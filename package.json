@@ -1,0 +1,22 @@
+{
+  "name": "mithril-lightning",
+  "version": "0.0.1",
+  "description": "Mithril components for Lightining Design System.",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mfeitoza/mithril-lightning.git"
+  },
+  "author": "Marcus Feitoza",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mfeitoza/mithril-lightning/issues"
+  },
+  "homepage": "https://github.com/mfeitoza/mithril-lightning#readme"
+}
