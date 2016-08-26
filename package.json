@@ -13,10 +13,21 @@
     "type": "git",
     "url": "git+ssh://git@github.com/mfeitoza/mithril-lightning.git"
   },
-  "author": "Marcus Feitoza",
+  "author": {
+    "name": "Marcus Feitoza",
+    "email": "sir-markus@live.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mfeitoza/mithril-lightning/issues"
   },
-  "homepage": "https://github.com/mfeitoza/mithril-lightning#readme"
+  "homepage": "https://github.com/mfeitoza/mithril-lightning#readme",
+  "dependencies": {
+    "@salesforce-ux/design-system": "*",
+    "mithril": "github:lhorie/mithril.js#rewrite"
+  },
+  "devDependencies": {
+    "gulp": "*",
+    "gulp-connect": "*"
+  }
 }
