@@ -6,7 +6,7 @@ gulp.task('connect', function() {
     name: 'Mithril Lightining',
     port: 8001,
     root: ['src', 'node_modules/@salesforce-ux', 'node_modules/mithril'],
-    livereoad: true
+    livereload: true
   });
 });
 
