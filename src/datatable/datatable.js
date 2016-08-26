@@ -3,6 +3,7 @@ var Datatable = {
 
   oninit: function (vnode) {
     this.fields = Object.keys(vnode.attrs.fields);
+    this.isStriped = vnode.attrs.isStriped;
   },
 
   header: function (fields) {
@@ -19,7 +20,9 @@ var Datatable = {
   },
 
   view: function(vnode) {
-    return m("table.slds-table.slds-table--bordered.slds-table--cell-buffer", [
+    var table = "table.slds-table.slds-table--bordered.slds-table--cell-buffer";
+    if (this.isStriped) table += ".slds-table--striped";
+    return m(table, [
       vnode.state.header(vnode.attrs.fields),
       m("tbody", [
         vnode.attrs.data.map(function (row) {
