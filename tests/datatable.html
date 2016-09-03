@@ -40,7 +40,8 @@
 
   var TableTest = m(Datatable, {
     fields: bookFields,
-    data: generator.array(bookModel)
+    data: generator.array(bookModel),
+    key: "id"
   });
 
   m.render(document.getElementById("app"), TableTest)

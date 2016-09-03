@@ -26,7 +26,7 @@ var Datatable = {
       vnode.state.header(vnode.attrs.fields),
       m("tbody", [
         vnode.attrs.data.map(function (row) {
-          return m("tr", [
+          return m("tr", { key: row[vnode.attrs.key] }, [
             // Loop in data here and validate if is th or td
             vnode.state.fields.map(function (key) {
               return m("td[scope='row']", [
