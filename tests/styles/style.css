@@ -1,0 +1,19 @@
+.masthead {
+  padding: 1.5rem 2rem 0.5rem 2rem;
+  background-color: #005fb2;
+  color: #fff;
+}
+.masthead h1 {
+  font-size: 2rem;
+}
+.masthead p {
+ opacity: 0.8
+}
+
+.content {
+  padding: 1rem 3rem;
+}
+.content h2 {
+  font-size: 1.4rem;
+  color: #5c2fda;
+}

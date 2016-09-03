@@ -5,6 +5,7 @@
   <title>MLD - Datatable Tests</title>
 
   <link href="/design-system/assets/styles/salesforce-lightning-design-system.min.css" rel="stylesheet">
+  <link href="styles/style.css" rel="stylesheet">
 </head>
 <body>
 
@@ -38,13 +39,35 @@
     short_description: "Description"
   };
 
-  var TableTest = m(Datatable, {
+  var Table = m(Datatable, {
     fields: bookFields,
-    data: generator.array(bookModel),
+    data: generator.array(bookModel, 5),
     key: "id"
   });
 
-  m.render(document.getElementById("app"), TableTest)
+  var TableStriped = m(Datatable, {
+    isStriped: true,
+    fields: bookFields,
+    data: generator.array(bookModel, 5),
+    key: "id"
+  });
+
+  m.render(document.getElementById("app"), [
+    m(".masthead", [
+      m("h1.", "Data Tables"),
+      m("p", "Data tables are an enhanced version of an HTML table and are used to display tabular data.")
+    ]),
+    m(".content", [
+      m("section.slds-m-bottom--xx-small.slds-p-top--x-large", [
+        m("h2.slds-m-bottom--medium", "Basic"),
+        Table
+      ]),
+      m("section.slds-m-bottom--xx-small.slds-p-top--x-large", [
+        m("h2.slds-m-bottom--medium", "Striped"),
+        TableStriped
+      ])
+    ])
+  ]);
 
 </script>
 

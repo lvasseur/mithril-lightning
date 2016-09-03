@@ -20,9 +20,15 @@ gulp.task('html', function () {
     .pipe(connect.reload())
 });
 
+gulp.task('styles', function() {
+  gulp.src(['./tests/styles/*.css'])
+    .pipe(connect.reload())
+});
+
 gulp.task('watch', function () {
   gulp.watch(['./src/**/*.js'], ['js']);
   gulp.watch(['./src/**/*.html', './tests/**/*.html'], ['html']);
+  gulp.watch(['./tests/styles/*.css'], ['styles'])
 });
 
 gulp.task('default', function() {
