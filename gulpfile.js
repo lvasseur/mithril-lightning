@@ -16,19 +16,19 @@ gulp.task('js', function () {
 });
 
 gulp.task('html', function () {
-  gulp.src(['./src/**/*.html', './tests/**/*.html'])
+  gulp.src(['./src/**/*.html', './docs/**/*.html'])
     .pipe(connect.reload())
 });
 
 gulp.task('styles', function() {
-  gulp.src(['./tests/styles/*.css'])
+  gulp.src(['./docs/styles/*.css'])
     .pipe(connect.reload())
 });
 
 gulp.task('watch', function () {
   gulp.watch(['./src/**/*.js'], ['js']);
-  gulp.watch(['./src/**/*.html', './tests/**/*.html'], ['html']);
-  gulp.watch(['./tests/styles/*.css'], ['styles'])
+  gulp.watch(['./src/**/*.html', './docs/**/*.html'], ['html']);
+  gulp.watch(['./docs/styles/*.css'], ['styles'])
 });
 
 gulp.task('default', function() {
