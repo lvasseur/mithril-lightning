@@ -27,6 +27,7 @@
     "mithril": "github:lhorie/mithril.js#rewrite"
   },
   "devDependencies": {
+    "faker": "^3.1.0",
     "gulp": "*",
     "gulp-connect": "*"
   }
