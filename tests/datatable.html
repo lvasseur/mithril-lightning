@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mithril Lightining</title>
+
+  <link href="/design-system/assets/styles/salesforce-lightning-design-system.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="app">
+
+</div>
+
+<script src="mithril.js"></script>
+<script src="datatable/datatable.js"></script>
+
+<script>
+  m.render(document.getElementById("app"), m(Datatable, {
+    fields: {
+      "field1": "Field 1",
+      "field2": "Field 2"
+    },
+    data: [
+      {"field1": "Teste 1", "field2": "Teste 2"},
+      {"field1": "Teste 2", "field2": "Teste 2"},
+      {"field1": "Teste 3", "field2": "Teste 2"},
+      {"field1": "Teste 4", "field2": "Teste 2"},
+      {"field1": "Teste 5", "field2": "Teste 2"},
+      {"field1": "Teste 6", "field2": "Teste 2"}
+    ]
+  }))
+</script>
+
+</body>
+</html>

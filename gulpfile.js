@@ -5,7 +5,7 @@ gulp.task('connect', function() {
   connect.server({
     name: 'Mithril Lightining',
     port: 8001,
-    root: ['src', 'node_modules/@salesforce-ux', 'node_modules/mithril'],
+    root: ['tests', 'src', 'node_modules/@salesforce-ux', 'node_modules/mithril'],
     livereload: true
   });
 });
@@ -16,13 +16,13 @@ gulp.task('js', function () {
 });
 
 gulp.task('html', function () {
-  gulp.src('./src/**/*.html')
+  gulp.src(['./src/**/*.html', './tests/**/*.html'])
     .pipe(connect.reload())
 });
 
 gulp.task('watch', function () {
   gulp.watch(['./src/**/*.js'], ['js']);
-  gulp.watch(['./src/**/*.html'], ['html']);
+  gulp.watch(['./src/**/*.html', './tests/**/*.html'], ['html']);
 });
 
 gulp.task('default', function() {
