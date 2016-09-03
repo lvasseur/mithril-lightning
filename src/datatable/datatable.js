@@ -1,4 +1,3 @@
-
 var Datatable = {
 
   oninit: function (vnode) {
@@ -29,9 +28,17 @@ var Datatable = {
           return m("tr", { key: row[vnode.attrs.key] }, [
             // Loop in data here and validate if is th or td
             vnode.state.fields.map(function (key) {
-              return m("td[scope='row']", [
-                m(".slds-truncate", row[key])
-              ])
+              if (key === vnode.attrs.key) {
+                return m("th[scope='row']", [
+                  m(".slds-truncate", [
+                    m("a[href='/']", { oncreate: m.route.link }, row[key])
+                  ])
+                ])
+              } else {
+                return m("td[scope='row']", [
+                  m(".slds-truncate", row[key])
+                ])
+              }
             })
           ])
         })
