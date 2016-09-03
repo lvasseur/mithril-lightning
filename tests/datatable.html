@@ -53,18 +53,21 @@
   });
 
   m.render(document.getElementById("app"), [
-    m(".masthead", [
-      m("h1.", "Data Tables"),
-      m("p", "Data tables are an enhanced version of an HTML table and are used to display tabular data.")
-    ]),
-    m(".content", [
-      m("section.slds-m-bottom--xx-small.slds-p-top--x-large", [
-        m("h2.slds-m-bottom--medium", "Basic"),
-        Table
+    m(".navigation"),
+    m("main", [
+      m(".masthead", [
+        m("h1.", "Data Tables"),
+        m("p", "Data tables are an enhanced version of an HTML table and are used to display tabular data.")
       ]),
-      m("section.slds-m-bottom--xx-small.slds-p-top--x-large", [
-        m("h2.slds-m-bottom--medium", "Striped"),
-        TableStriped
+      m(".content", [
+        m("section.slds-m-bottom--xx-small.slds-p-top--x-large", [
+          m("h2.slds-m-bottom--medium", "Basic"),
+          Table
+        ]),
+        m("section.slds-m-bottom--xx-small.slds-p-top--x-large", [
+          m("h2.slds-m-bottom--medium", "Striped"),
+          TableStriped
+        ])
       ])
     ])
   ]);

@@ -1,3 +1,14 @@
+main {
+  margin-left: 15rem;
+}
+.navigation {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 15rem;
+  border-right: 1px solid #f4f6f9;
+}
 .masthead {
   padding: 1.5rem 2rem 0.5rem 2rem;
   background-color: #005fb2;
@@ -7,7 +18,7 @@
   font-size: 2rem;
 }
 .masthead p {
- opacity: 0.8
+ opacity: 0.8;
 }
 
 .content {
