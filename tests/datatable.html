@@ -14,22 +14,37 @@
 
 <script src="mithril.js"></script>
 <script src="datatable/datatable.js"></script>
+<script src="faker.min.js"></script>
+<script src="helpers.js"></script>
 
 <script>
-  m.render(document.getElementById("app"), m(Datatable, {
-    fields: {
-      "field1": "Field 1",
-      "field2": "Field 2"
+
+  var bookModel = {
+    id: {
+      field: faker.random,
+      type: "uuid"
     },
-    data: [
-      {"field1": "Teste 1", "field2": "Teste 2"},
-      {"field1": "Teste 2", "field2": "Teste 2"},
-      {"field1": "Teste 3", "field2": "Teste 2"},
-      {"field1": "Teste 4", "field2": "Teste 2"},
-      {"field1": "Teste 5", "field2": "Teste 2"},
-      {"field1": "Teste 6", "field2": "Teste 2"}
-    ]
-  }))
+    title: faker.lorem.words,
+    author: faker.name.findName,
+    price: faker.commerce.price,
+    short_description: faker.lorem.sentence
+  };
+
+  var bookFields = {
+    id: "#",
+    title: "Title",
+    author: "Author",
+    price: "Price",
+    short_description: "Description"
+  };
+
+  var TableTest = m(Datatable, {
+    fields: bookFields,
+    data: generator.array(bookModel)
+  });
+
+  m.render(document.getElementById("app"), TableTest)
+
 </script>
 
 </body>
