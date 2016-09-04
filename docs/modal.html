@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MLD - Modal</title>
+
+  <link href="/assets/styles/salesforce-lightning-design-system.min.css" rel="stylesheet">
+  <link href="styles/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+  </div>
+
+  <script src="mithril.js"></script>
+  <script src="modal.js"></script>
+  <script src="faker.min.js"></script>
+  <script src="helpers.js"></script>
+
+  <script>
+    m.render(document.getElementById("app"), [
+      m(".navigation"),
+      m("main", [
+        m(".masthead", [
+          m("h1.", "Modals"),
+          m("p", "Modals are used to display content in a layer above the app." +
+                  "This paradigm is used in cases such as the creation or editing of a record, " +
+                  "as well as various types of messaging and wizards.")
+        ]),
+        m(".content", [
+                m(Modal, {
+                  header: m("h2.slds-text-heading--medium", "Modal Header"),
+                  content: "Test",
+                  footer: "simple"
+                })
+        ])
+      ])
+    ]);
+  </script>
+
+</body>
+</html>
