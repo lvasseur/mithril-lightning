@@ -28,13 +28,44 @@
                   "as well as various types of messaging and wizards.")
         ]),
         m(".content", [
-          m(Modal, {
-            header: m("h2.slds-text-heading--medium", "Modal Header"),
-            content: "Test",
-            footer: "simple"
-          })
+          m("section", [
+            m("h2.slds-m-bottom--medium.desc", "Basic modal"),
+            m("button.slds-button.slds-button--brand", {
+              onclick: function () {
+                Modal.show(m(Modal, {
+                  header: m("h2.slds-text-heading--medium", "Basic"),
+                  content: "Test",
+                  footer: "simple footer"
+                }), "modal_test")
+              }
+            }, "Open Modal"),
+          ]),
+          m('hr'),
+          m("section", [
+            m("h2.slds-m-bottom--medium.desc", "Header empty"),
+            m("button.slds-button.slds-button--brand", {
+              onclick: function () {
+                Modal.show(m(Modal, {
+                  content: "Test"
+                }), "modal_test")
+              }
+            }, "Open Modal"),
+          ]),
+          m('hr'),
+          m("section", [
+            m("h2.slds-m-bottom--medium.desc", "Footer removed"),
+            m("button.slds-button.slds-button--brand", {
+              onclick: function () {
+                Modal.show(m(Modal, {
+                  header: m("h2.slds-text-heading--medium", "Modal Header"),
+                  content: "Test"
+                }), "modal_test")
+              }
+            }, "Open Modal"),
+          ])
         ])
-      ])
+      ]),
+      m("#modal_test")
     ]);
   </script>
 

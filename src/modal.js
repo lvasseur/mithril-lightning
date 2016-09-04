@@ -1,9 +1,13 @@
 var Modal = {
 
+  show: function (modal, id) {
+    idNode = document.getElementById(id);
+    modal.state.root = idNode;
+    m.render(idNode, modal);
+  },
+
   oninit: function (vnode) {
     console.log("oninit");
-
-
   },
 
   oncreate: function (vnode) {
@@ -11,7 +15,7 @@ var Modal = {
   },
 
   modalClose: function (e) {
-    m.mount(this.dom, null);
+    m.mount(this.state.root, null);
   },
 
   view: function (vnode) {
@@ -50,3 +54,8 @@ var Modal = {
   }
 
 };
+
+var a = m(Modal, {
+  header: m("h2.slds-text-heading--medium", "Modal Header"),
+  content: "Test"
+});
