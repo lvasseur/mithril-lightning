@@ -18,55 +18,57 @@
   <script src="helpers.js"></script>
 
   <script>
-    m.render(document.getElementById("app"), [
-      m(".navigation"),
-      m("main", [
-        m(".masthead", [
-          m("h1.", "Modals"),
-          m("p", "Modals are used to display content in a layer above the app." +
-                  "This paradigm is used in cases such as the creation or editing of a record, " +
-                  "as well as various types of messaging and wizards.")
-        ]),
-        m(".content", [
-          m("section", [
-            m("h2.slds-m-bottom--medium.desc", "Basic modal"),
-            m("button.slds-button.slds-button--brand", {
-              onclick: function () {
-                Modal.show(m(Modal, {
-                  header: m("h2.slds-text-heading--medium", "Basic"),
-                  content: "Test",
-                  footer: "simple footer"
-                }), "modal_test")
-              }
-            }, "Open Modal"),
+    m.mount(document.getElementById("app"), {
+      view: function () {
+        return [m(".navigation"),
+          m("main", [
+            m(".masthead", [
+              m("h1.", "Modals"),
+              m("p", "Modals are used to display content in a layer above the app." +
+                      "This paradigm is used in cases such as the creation or editing of a record, " +
+                      "as well as various types of messaging and wizards.")
+            ]),
+            m(".content", [
+              m("section", [
+                m("h2.slds-m-bottom--medium.desc", "Basic modal"),
+                m("button.slds-button.slds-button--brand", {
+                  onclick: function () {
+                    Modal.show(m(Modal, {
+                      header: m("h2.slds-text-heading--medium", "Basic"),
+                      content: faker.lorem.paragraph(),
+                      footer: "simple footer"
+                    }), "modal-test--1")
+                  }
+                }, "Open Modal"),
+              ]),
+              m('hr'),
+              m("section", [
+                m("h2.slds-m-bottom--medium.desc", "Header empty"),
+                m("button.slds-button.slds-button--brand", {
+                  onclick: function () {
+                    Modal.show(m(Modal, {
+                      content: faker.lorem.paragraph()
+                    }), "modal-test--2")
+                  }
+                }, "Open Modal"),
+              ]),
+              m('hr'),
+              m("section", [
+                m("h2.slds-m-bottom--medium.desc", "Footer removed"),
+                m("button.slds-button.slds-button--brand", {
+                  onclick: function () {
+                    Modal.show(m(Modal, {
+                      header: m("h2.slds-text-heading--medium", "Modal Header"),
+                      content: faker.lorem.paragraph()
+                    }), "modal-test--3")
+                  }
+                }, "Open Modal"),
+              ])
+            ])
           ]),
-          m('hr'),
-          m("section", [
-            m("h2.slds-m-bottom--medium.desc", "Header empty"),
-            m("button.slds-button.slds-button--brand", {
-              onclick: function () {
-                Modal.show(m(Modal, {
-                  content: "Test"
-                }), "modal_test")
-              }
-            }, "Open Modal"),
-          ]),
-          m('hr'),
-          m("section", [
-            m("h2.slds-m-bottom--medium.desc", "Footer removed"),
-            m("button.slds-button.slds-button--brand", {
-              onclick: function () {
-                Modal.show(m(Modal, {
-                  header: m("h2.slds-text-heading--medium", "Modal Header"),
-                  content: "Test"
-                }), "modal_test")
-              }
-            }, "Open Modal"),
-          ])
-        ])
-      ]),
-      m("#modal_test")
-    ]);
+        ]
+      }
+    });
   </script>
 
 </body>

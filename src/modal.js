@@ -1,9 +1,11 @@
 var Modal = {
 
   show: function (modal, id) {
-    idNode = document.getElementById(id);
-    modal.state.root = idNode;
-    m.render(idNode, modal);
+    modalWrapper = document.createElement("div");
+    modalWrapper.id = id;
+    modal.state.root = modalWrapper;
+    document.body.appendChild(modalWrapper);
+    m.render(modalWrapper, modal);
   },
 
   oninit: function (vnode) {
@@ -16,10 +18,11 @@ var Modal = {
 
   modalClose: function (e) {
     m.mount(this.state.root, null);
+    this.state.root.remove()
   },
 
   view: function (vnode) {
-    return m(".modal-wrapper", [
+    return [
       m(".slds-modal.slds-fade-in-open[role='dialog'][tabindex='-1']", [
         m(".slds-modal__container", [
           m(".slds-modal__header", {
@@ -50,7 +53,7 @@ var Modal = {
         ]),
     ]),
       m(".slds-backdrop.slds-backdrop--open")
-    ])
+    ]
   }
 
 };
