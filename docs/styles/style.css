@@ -24,7 +24,7 @@ main {
 .content {
   padding: 1rem 3rem;
 }
-.content h2 {
+.content h2.desc {
   font-size: 1.4rem;
   color: #5c2fda;
 }
