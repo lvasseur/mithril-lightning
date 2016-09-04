@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MLD - Cards</title>
+
+  <link href="/assets/styles/salesforce-lightning-design-system.min.css" rel="stylesheet">
+  <link href="styles/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="app">
+</div>
+
+<script src="mithril.js"></script>
+<script src="card.js"></script>
+<script src="datatable.js"></script>
+<script src="faker.min.js"></script>
+<script src="helpers.js"></script>
+
+<script>
+
+  var tiles = [
+    m(".slds-tile.slds-media.slds-card__tile.slds-col--padded", [
+      m(".slds-media__figure", [
+        m(".slds-icon_container", [
+          m("svg.slds-icon.slds-icon-standard-contact.slds-icon--small[aria-hidden='true']", [
+            m("use[xlink:href='/assets/icons/standard-sprite/svg/symbols.svg#contact']")
+          ]),
+          m("span.slds-assistive-text", "Contact")
+        ])
+      ]),
+      m(".slds-media__body", [
+        m(".slds-grid.slds-grid--align-spread.slds-has-flexi-truncate", [
+          m("h3.slds-truncate[title='Related Record Title 1']", [m("a[href='javascript:void(0);']", "Related Record Title 1")]),
+          m("button.slds-button.slds-button--icon-border-filled.slds-button--icon-x-small.slds-shrink-none", [
+            m("svg.slds-button__icon.slds-button__icon--hint.slds-button__icon--small[aria-hidden='true']", [
+              m("use[xlink:href='/assets/icons/utility-sprite/svg/symbols.svg#down']")
+            ]),
+            m("span.slds-assistive-text", "Show More")
+          ])
+        ]),
+        m(".slds-tile__detail.slds-text-body--small", [
+          m("dl.slds-dl--horizontal", [
+            m("dt.slds-dl--horizontal__label", [
+              m("p.slds-truncate[title='Type']", "Type:")
+            ]),
+            m("dd.slds-dl--horizontal__detail.slds-tile__meta", [
+              m("p.slds-truncate[title='Visit']", "Visit")
+            ]),
+            m("dt.slds-dl--horizontal__label", [
+              m("p.slds-truncate[title='Date']", "Date:")
+            ]),
+            m("dd.slds-dl--horizontal__detail.slds-tile__meta", [
+              m("p.slds-truncate[title='1/31/15 3:45PM']", "1/31/15 3:45PM")
+            ])
+          ])
+        ])
+      ])
+    ]),
+    m(".slds-tile.slds-media.slds-card__tile.slds-col--padded", [
+      m(".slds-media__figure", [
+        m(".slds-icon_container", [
+          m("svg.slds-icon.slds-icon-standard-contact.slds-icon--small[aria-hidden='true']", [
+            m("use[xlink:href='/assets/icons/standard-sprite/svg/symbols.svg#contact']")
+          ]),
+          m("span.slds-assistive-text", "Contact")
+        ])
+      ]),
+      m(".slds-media__body", [
+        m(".slds-grid.slds-grid--align-spread.slds-has-flexi-truncate", [
+          m("h3.slds-truncate[title='Related Record Title 1']", [m("a[href='javascript:void(0);']", "Related Record Title 1")]),
+          m("button.slds-button.slds-button--icon-border-filled.slds-button--icon-x-small.slds-shrink-none", [
+            m("svg.slds-button__icon.slds-button__icon--hint.slds-button__icon--small[aria-hidden='true']", [
+              m("use[xlink:href='/assets/icons/utility-sprite/svg/symbols.svg#down']")
+            ]),
+            m("span.slds-assistive-text", "Show More")
+          ])
+        ]),
+        m(".slds-tile__detail.slds-text-body--small", [
+          m("dl.slds-dl--horizontal", [
+            m("dt.slds-dl--horizontal__label", [
+              m("p.slds-truncate[title='Type']", "Type:")
+            ]),
+            m("dd.slds-dl--horizontal__detail.slds-tile__meta", [
+              m("p.slds-truncate[title='Visit']", "Visit")
+            ]),
+            m("dt.slds-dl--horizontal__label", [
+              m("p.slds-truncate[title='Date']", "Date:")
+            ]),
+            m("dd.slds-dl--horizontal__detail.slds-tile__meta", [
+              m("p.slds-truncate[title='1/31/15 3:45PM']", "1/31/15 3:45PM")
+            ])
+          ])
+        ])
+      ])
+    ]),
+    m(".slds-tile.slds-media.slds-card__tile.slds-col--padded", [
+      m(".slds-media__figure", [
+        m(".slds-icon_container", [
+          m("svg.slds-icon.slds-icon-standard-contact.slds-icon--small[aria-hidden='true']", [
+            m("use[xlink:href='/assets/icons/standard-sprite/svg/symbols.svg#contact']")
+          ]),
+          m("span.slds-assistive-text", "Contact")
+        ])
+      ]),
+      m(".slds-media__body", [
+        m(".slds-grid.slds-grid--align-spread.slds-has-flexi-truncate", [
+          m("h3.slds-truncate[title='Related Record Title 1']", [m("a[href='javascript:void(0);']", "Related Record Title 1")]),
+          m("button.slds-button.slds-button--icon-border-filled.slds-button--icon-x-small.slds-shrink-none", [
+            m("svg.slds-button__icon.slds-button__icon--hint.slds-button__icon--small[aria-hidden='true']", [
+              m("use[xlink:href='/assets/icons/utility-sprite/svg/symbols.svg#down']")
+            ]),
+            m("span.slds-assistive-text", "Show More")
+          ])
+        ]),
+        m(".slds-tile__detail.slds-text-body--small", [
+          m("dl.slds-dl--horizontal", [
+            m("dt.slds-dl--horizontal__label", [
+              m("p.slds-truncate[title='Type']", "Type:")
+            ]),
+            m("dd.slds-dl--horizontal__detail.slds-tile__meta", [
+              m("p.slds-truncate[title='Visit']", "Visit")
+            ]),
+            m("dt.slds-dl--horizontal__label", [
+              m("p.slds-truncate[title='Date']", "Date:")
+            ]),
+            m("dd.slds-dl--horizontal__detail.slds-tile__meta", [
+              m("p.slds-truncate[title='1/31/15 3:45PM']", "1/31/15 3:45PM")
+            ])
+          ])
+        ])
+      ])
+    ])
+  ];
+
+  var bookModel = {
+    id: {
+      field: faker.random,
+      type: "uuid"
+    },
+    title: faker.lorem.words,
+    author: faker.name.findName,
+    price: faker.commerce.price,
+    short_description: faker.lorem.sentence
+  };
+
+  var bookFields = {
+    id: "#",
+    title: "Title",
+    author: "Author",
+    price: "Price",
+    short_description: "Description"
+  };
+
+  var Table = m(Datatable, {
+    fields: bookFields,
+    data: generator.array(bookModel, 5),
+    key: "id"
+  });
+
+  m.render(document.getElementById("app"), [
+    m(".navigation"),
+    m("main", [
+      m(".masthead", [
+        m("h1.", "Cards"),
+        m("p", "Cards are used to apply a container around a related grouping of information.")
+      ]),
+      m(".content", [
+        m("section", [
+          m("h2.slds-m-bottom--medium.desc", "Base"),
+          m(Card, {
+            header: faker.lorem.words(2),
+            body: {
+              content: faker.lorem.paragraph(),
+              class: 'slds-p-horizontal--large slds-text-align--center'
+            },
+            footer: faker.lorem.words(1)
+          })
+        ]),
+        m("hr"),
+        m("section", [
+          m("h2.slds-m-bottom--medium.desc", "Base Narrow"),
+          m("[style='max-width:400px']", [
+            m(Card, {
+              narrow: true,
+              header: faker.lorem.words(2),
+              body: {
+                content: faker.lorem.paragraph(),
+                class: ['slds-p-horizontal--large']
+              },
+              footer: faker.lorem.words(1)
+            })
+          ])
+        ]),
+        m("hr"),
+        m("section", [
+          m("h2.slds-m-bottom--medium.desc", "Related List With Tiles"),
+          m(Card, {
+            header: faker.lorem.words(2),
+            body: {
+              content: Card.tilesWrapper(tiles)
+            },
+            footer: faker.lorem.words(1)
+          })
+        ]),
+        m("hr"),
+        m("section", [
+          m("h2.slds-m-bottom--medium.desc", "Related List With Table"),
+          m(Card, {
+            header: faker.lorem.words(2),
+            body: {
+              content: Table
+            },
+            footer: faker.lorem.words(1)
+          })
+        ]),
+        m("hr"),
+        m("section", [
+          m("h2.slds-m-bottom--medium.desc", "Related List Narrow"),
+          m("[style='max-width:400px']", [
+            m(Card, {
+              narrow: true,
+              header: faker.lorem.words(2),
+              body: {
+                content: Card.tilesWrapper(tiles),
+              },
+              footer: faker.lorem.words(1)
+            })
+          ])
+        ]),
+      ])
+    ])
+  ]);
+
+</script>
+
+</body>
+</html>
