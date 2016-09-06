@@ -62,3 +62,15 @@ form.radioGroup = function (attrs) {
     ])
   ])
 };
+
+form.checkbox = function (attrs) {
+  return m(".slds-form-element", [
+    m(".slds-form-element__control", [
+      m("label.slds-checkbox", [
+        m("input[type='checkbox']", attrs.checkbox),
+        m("span.slds-checkbox--faux"),
+        m("span.slds-form-element__label", attrs.label)
+      ])
+    ])
+  ])
+};

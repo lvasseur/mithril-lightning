@@ -43,6 +43,7 @@
       value: "radio-four"
     }
   ];
+  var checkboxTest = m.prop(false);
 
   m.mount(document.getElementById("app"), {
     view: function () {
@@ -94,6 +95,19 @@
                 name: "radioGroupTest",
                 onclick: m.withAttr("value", radioGroupTest),
                 itens: radioItens
+              })
+            ]),
+            m("hr"),
+            m("section", [
+              m("h2.slds-m-bottom--medium.desc", "Checkbox"),
+              form.checkbox({
+                label: "Is checked: " + checkboxTest,
+                name: "checkboxTest",
+                // TODO: fix checkbox click
+                checkbox: {
+                  onclick: m.withAttr("checked", checkboxTest),
+                  checked: checkboxTest()
+                }
               })
             ])
           ])
