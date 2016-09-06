@@ -21,6 +21,25 @@
 
 <script>
 
+  var itens = [
+    {
+      href: "#",
+      label: faker.lorem.word()
+    },
+    {
+      href: "#",
+      label: faker.lorem.word()
+    },
+    {
+      href: "#",
+      label: faker.lorem.word()
+    },
+    {
+      href: "#",
+      label: faker.lorem.word()
+    }
+  ];
+
   m.mount(document.getElementById("app"), {
     view: function () {
       return m(".navigation"),
@@ -31,9 +50,18 @@
                 m(".content", [
                   m("section", [
                     m("h2.slds-m-bottom--medium.desc", "Dropdown"),
-                    icon.utility("down"),
-                    m(Menu)
-                  ])
+                    m(Menu, {
+                      icon: icon.utility('down'),
+                      itens: itens
+                    })
+                  ]),
+                  m("section", [
+                    m("h2.slds-m-bottom--medium.desc", "Dropdown"),
+                    m(Menu, {
+                      icon: icon.utility('add'),
+                      itens: itens
+                    })
+                  ]),
                 ])
               ])
     }
