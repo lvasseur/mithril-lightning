@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MLD - Icons</title>
+
+  <link href="/assets/styles/salesforce-lightning-design-system.min.css" rel="stylesheet">
+  <link href="styles/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="app">
+
+</div>
+
+<script src="mithril.js"></script>
+<script src="icons.js"></script>
+<script src="form.js"></script>
+<script src="faker.min.js"></script>
+<script src="helpers.js"></script>
+
+<script>
+
+  inputTest = m.prop("Change label");
+
+  m.mount(document.getElementById("app"), {
+    view: function () {
+      return m(".navigation"),
+        m("main", [
+          m(".masthead", [
+            m("h1.", "Forms"),
+          ]),
+          m(".content", [
+            m("section", [
+              m("h2.slds-m-bottom--medium.desc", "Input"),
+              form.input({
+                label: "Label: " + inputTest(),
+                input: {
+                  oninput: m.withAttr("value", inputTest),
+                  value: inputTest(),
+                  placeholder: "Some Placeholder"
+                }
+              })
+            ])
+          ])
+        ])
+    }
+  });
+
+</script>
+
+</body>
+</html>
