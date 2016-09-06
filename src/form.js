@@ -13,3 +13,14 @@ form.input = function (attrs) {
   ])
 };
 
+form.textarea = function (attrs) {
+  return m(".slds-form-element", [
+    m("label.slds-form-element__label[for='textarea-input-01']", attrs.label),
+    m(".slds-form-element__control", [
+      m("textarea.slds-textarea", attrs.textarea)
+    ])
+  ])
+};
+
+
+

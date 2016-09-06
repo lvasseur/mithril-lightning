@@ -21,7 +21,9 @@
 
 <script>
 
-  inputTest = m.prop("Change label");
+  var inputTest = m.prop("Change label");
+  var textareaTest = m.prop("Text test.");
+
 
   m.mount(document.getElementById("app"), {
     view: function () {
@@ -41,6 +43,24 @@
                   placeholder: "Some Placeholder"
                 }
               })
+            ]),
+            m("hr"),
+            m("section", [
+              m("h2.slds-m-bottom--medium.desc", "Textarea"),
+              form.textarea({
+                label: "Textarea label",
+                textarea: {
+                  oninput: m.withAttr("value", textareaTest),
+                  value: textareaTest(),
+                  placeholder: "Some Placeholder"
+                }
+              }),
+              m("p.slds-p-top--medium", textareaTest())
+            ]),
+            m("hr"),
+            m("section", [
+              m("h2.slds-m-bottom--medium.desc", "Radio")
+
             ])
           ])
         ])
