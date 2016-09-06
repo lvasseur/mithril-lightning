@@ -22,5 +22,43 @@ form.textarea = function (attrs) {
   ])
 };
 
+form.radio = function (attrs) {
+  return m("fieldset.slds-form-element", [
+    m("legend.slds-form-element__legend.slds-form-element__label", [
+      attrs.required ? m("abbr.slds-required[title='required']", "*") : ""
+    ], attrs.label),
+    m(".slds-form-element__control", [
+      attrs.itens.map(function (radio) {
+        return m("label.slds-radio", [
+          m("input[type='radio']", {
+            name: attrs.name,
+            value: radio.value,
+            onclick: attrs.onclick
+          }),
+          m("span.slds-radio--faux"),
+          m("span.slds-form-element__label", radio.label)
+        ])
+      })
+    ])
+  ])
+};
 
-
+form.radioGroup = function (attrs) {
+  return m("fieldset.slds-form-element", [
+    m("legend.slds-form-element__legend.slds-form-element__label", attrs.label),
+    m(".slds-form-element__control", [
+      m(".slds-radio--button-group", [
+        attrs.itens.map(function (radio) {
+        return m("label.slds-button.slds-radio--button", [
+            m("input[type='radio']", {
+              name: attrs.name,
+              value: radio.value,
+              onclick: attrs.onclick
+            }),
+            m("span.slds-radio--faux", radio.label)
+          ])
+        })
+      ])
+    ])
+  ])
+};

@@ -23,7 +23,26 @@
 
   var inputTest = m.prop("Change label");
   var textareaTest = m.prop("Text test.");
-
+  var radioTest = m.prop("None");
+  var radioGroupTest = m.prop("None");
+  var radioItens = [
+    {
+      label: "One",
+      value: "radio-one"
+    },
+    {
+      label: "Two",
+      value: "radio-two"
+    },
+    {
+      label: "Three",
+      value: "radio-three"
+    },
+    {
+      label: "Four",
+      value: "radio-four"
+    }
+  ];
 
   m.mount(document.getElementById("app"), {
     view: function () {
@@ -59,8 +78,23 @@
             ]),
             m("hr"),
             m("section", [
-              m("h2.slds-m-bottom--medium.desc", "Radio")
-
+              m("h2.slds-m-bottom--medium.desc", "Radio"),
+              form.radio({
+                label: "Radio label: " + radioTest,
+                name: "radioTest",
+                onclick: m.withAttr("value", radioTest),
+                itens: radioItens
+              })
+            ]),
+            m("hr"),
+            m("section", [
+              m("h2.slds-m-bottom--medium.desc", "Radio Group"),
+              form.radioGroup({
+                label: "Radio Group label: " + radioGroupTest,
+                name: "radioGroupTest",
+                onclick: m.withAttr("value", radioGroupTest),
+                itens: radioItens
+              })
             ])
           ])
         ])
