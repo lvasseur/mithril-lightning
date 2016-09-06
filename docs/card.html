@@ -15,6 +15,7 @@
 <script src="mithril.js"></script>
 <script src="card.js"></script>
 <script src="datatable.js"></script>
+<script src="icons.js"></script>
 <script src="faker.min.js"></script>
 <script src="helpers.js"></script>
 
@@ -23,12 +24,7 @@
   var tiles = [
     m(".slds-tile.slds-media.slds-card__tile.slds-col--padded", [
       m(".slds-media__figure", [
-        m(".slds-icon_container", [
-          m("svg.slds-icon.slds-icon-standard-contact.slds-icon--small[aria-hidden='true']", [
-            m("use[xlink:href='/assets/icons/standard-sprite/svg/symbols.svg#contact']")
-          ]),
-          m("span.slds-assistive-text", "Contact")
-        ])
+        icon.standard("contact", {size: "small"})
       ]),
       m(".slds-media__body", [
         m(".slds-grid.slds-grid--align-spread.slds-has-flexi-truncate", [
@@ -60,12 +56,7 @@
     ]),
     m(".slds-tile.slds-media.slds-card__tile.slds-col--padded", [
       m(".slds-media__figure", [
-        m(".slds-icon_container", [
-          m("svg.slds-icon.slds-icon-standard-contact.slds-icon--small[aria-hidden='true']", [
-            m("use[xlink:href='/assets/icons/standard-sprite/svg/symbols.svg#contact']")
-          ]),
-          m("span.slds-assistive-text", "Contact")
-        ])
+        icon.standard("contact", {size: "small"})
       ]),
       m(".slds-media__body", [
         m(".slds-grid.slds-grid--align-spread.slds-has-flexi-truncate", [
@@ -97,12 +88,7 @@
     ]),
     m(".slds-tile.slds-media.slds-card__tile.slds-col--padded", [
       m(".slds-media__figure", [
-        m(".slds-icon_container", [
-          m("svg.slds-icon.slds-icon-standard-contact.slds-icon--small[aria-hidden='true']", [
-            m("use[xlink:href='/assets/icons/standard-sprite/svg/symbols.svg#contact']")
-          ]),
-          m("span.slds-assistive-text", "Contact")
-        ])
+        icon.standard("contact", {size: "small"})
       ]),
       m(".slds-media__body", [
         m(".slds-grid.slds-grid--align-spread.slds-has-flexi-truncate", [
