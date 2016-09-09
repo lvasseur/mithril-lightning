@@ -1,7 +1,26 @@
 var form = {};
 
+form.wrapper = {};
+
+form.bindsData = function (data) {
+  return {
+    onchange: function (e) {
+      // data[e.target.name](e.target.value);
+      console.log(e.target.type);
+      switch (e.target.type) {
+        case 'checkbox':
+          data[e.target.name](e.target.checked);
+          break;
+        default:
+          data[e.target.name](e.target.value);
+          break;
+      }
+    }
+  }
+};
+
 form.input = function (attrs) {
-  return m(".slds-form-element", [
+  return m(".slds-form-element", attrs.wrapper, [
     m("label.slds-form-element__label", {
       for: attrs.name
     }, [
@@ -61,4 +80,56 @@ form.radioGroup = function (attrs) {
       ])
     ])
   ])
+};
+
+form.checkbox = function (attrs) {
+  return m(".slds-form-element", [
+    m(".slds-form-element__control", [
+      m("label.slds-checkbox", [
+        m("input[type='checkbox']", attrs.checkbox),
+        m("span.slds-checkbox--faux"),
+        m("span.slds-form-element__label", attrs.label)
+      ])
+    ])
+  ])
+};
+
+form.wrapper.horizontal = {
+
+  view: function (vnode) {
+    return m("form.slds-form--horizontal", vnode.attrs,[
+      vnode.children
+    ])
+  }
+
+};
+
+form.wrapper.stacked = {
+
+  view: function (vnode) {
+    return m("form.slds-form--stacked", vnode.attrs,[
+      vnode.children
+    ])
+  }
+
+};
+
+form.wrapper.compound = {
+
+  view: function (vnode) {
+    return vnode.attrs.rows.map(function (row) {
+      return [m("fieldset.slds-form--compound", [
+          m("legend.slds-form-element__label.slds-text-title--caps", row.legend),
+          m(".form-element__group", [
+            m(".slds-form-element__row", [
+              row.elements.map(function (element) {
+                return element
+              })
+            ])
+          ])
+        ]
+      )]
+    })
+  }
+
 };

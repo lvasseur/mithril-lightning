@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/mfeitoza/mithril-lightning#readme",
   "dependencies": {
-    "@salesforce-ux/design-system": "*",
+    "@salesforce-ux/design-system": "^2.1.2",
     "mithril": "github:lhorie/mithril.js#rewrite"
   },
   "devDependencies": {
