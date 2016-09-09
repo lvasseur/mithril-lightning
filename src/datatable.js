@@ -1,3 +1,5 @@
+'use strict';
+
 var Datatable = {
 
   oninit: function (vnode) {
@@ -47,3 +49,5 @@ var Datatable = {
   }
 
 };
+
+module.exports = Datatable;

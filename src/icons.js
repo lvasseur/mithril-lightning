@@ -84,3 +84,5 @@ var icon = {
     ])
   }
 };
+
+module.exports = icon;

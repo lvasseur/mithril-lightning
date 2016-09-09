@@ -1,3 +1,5 @@
+'use strict';
+
 var Modal = {
 
   show: function (modal, id) {
@@ -58,7 +60,4 @@ var Modal = {
 
 };
 
-var a = m(Modal, {
-  header: m("h2.slds-text-heading--medium", "Modal Header"),
-  content: "Test"
-});
+module.exports = Modal;

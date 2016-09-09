@@ -133,3 +133,5 @@ form.wrapper.compound = {
   }
 
 };
+
+module.exports = form;
