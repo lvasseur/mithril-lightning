@@ -122,6 +122,69 @@
       itens: radioItens
     })
   ];
+  var formElementsCompound = [
+        {
+          legend: "One",
+          elements: [
+            form.input({
+              label: "Label1",
+              input: {
+                placeholder: "Placeholder Label1",
+                name: "s_label1"
+              },
+              wrapper: {
+                class: "slds-size--1-of-2"
+              }
+            }),
+            form.input({
+              label: "Label2",
+              input: {
+                placeholder: "Placeholder Label2",
+                name: "s_label2"
+              },
+              wrapper: {
+                class: "slds-size--1-of-2"
+              }
+            })
+          ]
+        },
+        {
+          legend: "Two",
+          elements: [
+            form.input({
+              label: "Label3",
+              input: {
+                placeholder: "Placeholder Label3",
+                name: "s_label3"
+              },
+              wrapper: {
+                class: "slds-size--1-of-3"
+              }
+            }),
+           form.input({
+              label: "Label4",
+              input: {
+                placeholder: "Placeholder Label4",
+                name: "s_label4"
+              },
+             wrapper: {
+               class: "slds-size--1-of-3"
+             }
+            }),
+            form.input({
+              label: "Label5",
+              input: {
+                placeholder: "Placeholder Label4",
+                name: "s_label4"
+              },
+             wrapper: {
+               class: "slds-size--1-of-3"
+             }
+            })
+          ]
+        }
+      ];
+
   var formDataHorizontal = {
     label1: m.prop(""),
     label2: m.prop(""),
@@ -166,7 +229,15 @@
                       return m("li", key + ": ", formDataStacked[key]())
                     })
                   ]),
-                  m("hr")
+                  m("hr"),
+                  m("section", [
+                    m("h2.slds-m-bottom--medium.desc", "Compound Form"),
+                    m("form", [
+                      m(form.wrapper.compound, {
+                        compound: {},
+                        rows: formElementsCompound
+                      })])
+                  ])
                 ])
               ])
     }
