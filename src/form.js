@@ -103,3 +103,13 @@ form.wrapper.horizontal = {
   }
 
 };
+
+form.wrapper.stacked = {
+
+  view: function (vnode) {
+    return m("form.slds-form--stacked", vnode.attrs,[
+      vnode.children
+    ])
+  }
+
+};
