@@ -105,8 +105,9 @@
                 name: "checkboxTest",
                 // TODO: fix checkbox click
                 checkbox: {
-                  onclick: m.withAttr("checked", checkboxTest),
-                  checked: checkboxTest()
+                  name: "checkboxTest",
+                  checked: checkboxTest(),
+                  onclick: m.withAttr("checked", checkboxTest)
                 }
               })
             ])
