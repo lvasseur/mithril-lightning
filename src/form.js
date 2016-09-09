@@ -1,9 +1,20 @@
 var form = {};
 
+form.wrapper = {};
+
 form.bindsData = function (data) {
   return {
     onchange: function (e) {
-      data[e.target.name] = e.target.value;
+      // data[e.target.name](e.target.value);
+      console.log(e.target.type);
+      switch (e.target.type) {
+        case 'checkbox':
+          data[e.target.name](e.target.checked);
+          break;
+        default:
+          data[e.target.name](e.target.value);
+          break;
+      }
     }
   }
 };
@@ -81,4 +92,14 @@ form.checkbox = function (attrs) {
       ])
     ])
   ])
+};
+
+form.wrapper.horizontal = {
+
+  view: function (vnode) {
+    return m("form.slds-form--horizontal", vnode.attrs,[
+      vnode.children
+    ])
+  }
+
 };
