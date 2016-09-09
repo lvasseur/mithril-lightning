@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MLD - Navigation</title>
+
+  <link href="/assets/styles/salesforce-lightning-design-system.min.css" rel="stylesheet">
+  <link href="styles/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="app">
+
+</div>
+
+<script src="mithril.js"></script>
+<script src="navigation.js"></script>
+<script src="icons.js"></script>
+<script src="faker.min.js"></script>
+<script src="helpers.js"></script>
+
+<script>
+
+  var navTest = [
+    {
+      "label": "Main",
+      "sub": [
+        {
+          "label": "One",
+          "href": "/one"
+        },
+        {
+          "label": "Two",
+          "href": "/Two"
+        },
+        {
+          "label": "Three",
+          "href": "/Three"
+        },
+        {
+          "label": "Four",
+          "href": "/Four"
+        },
+        {
+          "label": "Five",
+          "href": "/Five"
+        },
+      ]
+    },
+    {
+      "label": "Another Nav",
+      "sub": [
+        {
+          "label": "Another 1",
+          "href": "/another1"
+        },
+        {
+          "label": "Another 2",
+          "href": "/another2"
+        }
+      ]
+    }
+  ];
+
+
+  var app = {
+    view: function () {
+      return m(".navigation"),
+              m("main", [
+                m(".masthead", [
+                  m("h1.", "Navigation"),
+                ]),
+                m(".content", [
+                  m("section", { style: "width: 320px" }, [
+                    m("h2.slds-m-bottom--medium.desc", "Navigation"),
+                    m(nav, {
+                      nav: {
+                        style: "background: #FAFAFB",
+                        class: "slds-navigation-list--vertical-inverse"
+                      },
+                      menus: navTest
+                    })
+                  ])
+                ])
+              ])
+    }
+  };
+
+  m.route(document.getElementById("app"), "/one", {
+    "/one": app,
+    "/Two": app,
+    "/Three": app,
+    "/Four": app,
+    "/Five": app
+  });
+
+</script>
+
+</body>
+</html>
