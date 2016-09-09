@@ -1,5 +1,13 @@
 var form = {};
 
+form.bindsData = function (data) {
+  return {
+    onchange: function (e) {
+      data[e.target.name] = e.target.value;
+    }
+  }
+};
+
 form.input = function (attrs) {
   return m(".slds-form-element", [
     m("label.slds-form-element__label", {
