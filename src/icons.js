@@ -31,7 +31,8 @@ var icon = {
       class: "slds-icon-action-" + icon
     }, [
       m("svg.slds-icon.slds-icon-text-default[aria-hidden='true']", {
-        class: this.getSize(attrs.size)
+        class: this.getSize(attrs.size) + " " + attrs.class,
+        style: attrs.style
       }, [
         m("use[xlink:href='/assets/icons/utility-sprite/svg/symbols.svg#" + icon + "']")
       ]),

@@ -24,6 +24,7 @@
   var navTest = [
     {
       "label": "Main",
+      "icon": icon.utility("custom_apps", {class: "slds-m-right--x-small", style: "width: 1.2rem; height: 1.5rem"}),
       "sub": [
         {
           "label": "One",
@@ -44,11 +45,12 @@
         {
           "label": "Five",
           "href": "/Five"
-        },
-      ]
+        }
+    ]
     },
     {
       "label": "Another Nav",
+      "icon": icon.utility("moneybag", {class: "slds-m-right--x-small", style: "width: 1.2rem; height: 1.5rem"}),
       "sub": [
         {
           "label": "Another 1",
@@ -87,11 +89,7 @@
   };
 
   m.route(document.getElementById("app"), "/one", {
-    "/one": app,
-    "/Two": app,
-    "/Three": app,
-    "/Four": app,
-    "/Five": app
+    "/one": app
   });
 
 </script>

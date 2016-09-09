@@ -12,7 +12,9 @@ var nav = {
     return m(".slds-grid.slds-grid--vertical.slds-navigation-list--vertical", vnode.attrs.nav, [
       vnode.attrs.menus.map(function (menu) {
         return [
-          m("h2.slds-text-title--caps.slds-p-around--medium", menu.label),
+          m("h2.slds-text-title--caps.slds-p-around--small", {
+            style: "background: #eef1f6"
+          }, [menu.icon], menu.label),
           m("ul", {
             onclick: vnode.state.setActive
           }, [
