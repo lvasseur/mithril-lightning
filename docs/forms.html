@@ -20,11 +20,6 @@
 <script src="helpers.js"></script>
 
 <script>
-
-  var inputTest = m.prop("Change label");
-  var textareaTest = m.prop("Text test.");
-  var radioTest = m.prop("None");
-  var radioGroupTest = m.prop("None");
   var radioItens = [
     {
       label: "One",
@@ -43,76 +38,77 @@
       value: "radio-four"
     }
   ];
-  var checkboxTest = m.prop(false);
+  var formElements = [
+    form.input({
+      label: "Label1",
+      input: {
+        placeholder: "Placeholder Label1",
+        name: "label1",
+      }
+    }),
+    form.input({
+      label: "Label2",
+      input: {
+        placeholder: "Placeholder Label2",
+        name: "label2"
+      }
+    }),
+    form.input({
+      label: "Label3",
+      input: {
+        placeholder: "Placeholder Label3",
+        name: "label3"
+      }
+    }),
+    form.input({
+      label: "Label4",
+      input: {
+        placeholder: "Placeholder Label4",
+        name: "label4"
+      }
+    }),
+    form.checkbox({
+      label: "Is checked",
+      name: "checkboxTest",
+      checkbox: {
+        name: "checkebox"
+      }
+    }),
+    form.radioGroup({
+      label: "Radio Group label: ",
+      name: "radio",
+      itens: radioItens
+    })
+  ];
+  var formData = {
+    label1: m.prop(""),
+    label2: m.prop(""),
+    label3: m.prop(""),
+    label4: m.prop(""),
+    checkebox: m.prop(false),
+    radio: m.prop("")
+  };
 
   m.mount(document.getElementById("app"), {
     view: function () {
       return m(".navigation"),
-        m("main", [
-          m(".masthead", [
-            m("h1.", "Forms"),
-          ]),
-          m(".content", [
-            m("section", [
-              m("h2.slds-m-bottom--medium.desc", "Input"),
-              form.input({
-                label: "Label: " + inputTest(),
-                input: {
-                  oninput: m.withAttr("value", inputTest),
-                  value: inputTest(),
-                  placeholder: "Some Placeholder"
-                }
-              })
-            ]),
-            m("hr"),
-            m("section", [
-              m("h2.slds-m-bottom--medium.desc", "Textarea"),
-              form.textarea({
-                label: "Textarea label",
-                textarea: {
-                  oninput: m.withAttr("value", textareaTest),
-                  value: textareaTest(),
-                  placeholder: "Some Placeholder"
-                }
-              }),
-              m("p.slds-p-top--medium", textareaTest())
-            ]),
-            m("hr"),
-            m("section", [
-              m("h2.slds-m-bottom--medium.desc", "Radio"),
-              form.radio({
-                label: "Radio label: " + radioTest,
-                name: "radioTest",
-                onclick: m.withAttr("value", radioTest),
-                itens: radioItens
-              })
-            ]),
-            m("hr"),
-            m("section", [
-              m("h2.slds-m-bottom--medium.desc", "Radio Group"),
-              form.radioGroup({
-                label: "Radio Group label: " + radioGroupTest,
-                name: "radioGroupTest",
-                onclick: m.withAttr("value", radioGroupTest),
-                itens: radioItens
-              })
-            ]),
-            m("hr"),
-            m("section", [
-              m("h2.slds-m-bottom--medium.desc", "Checkbox"),
-              form.checkbox({
-                label: "Is checked: " + checkboxTest,
-                name: "checkboxTest",
-                // TODO: fix checkbox click
-                checkbox: {
-                  name: "checkboxTest",
-                  checked: checkboxTest(),
-                  onchange: m.withAttr("checked", checkboxTest)
-                }
-              })
-            ])
-          ])
-        ])
+              m("main", [
+                m(".masthead", [
+                  m("h1.", "Forms"),
+                ]),
+                m(".content", [
+                  m("section", [
+                    m("h2.slds-m-bottom--medium.desc", "Horizontal"),
+                    m(form.wrapper.horizontal, form.bindsData(formData), formElements)
+                  ]),
+                  m("ol", [
+                    Object.keys(formData).map(function (key) {
+                      return m("li", key + ": ", formData[key]())
+                    })
+                  ]),
+                  m("hr")
+                ])
+              ])
     }
   });
 
