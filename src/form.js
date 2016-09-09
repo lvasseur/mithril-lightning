@@ -20,7 +20,7 @@ form.bindsData = function (data) {
 };
 
 form.input = function (attrs) {
-  return m(".slds-form-element", [
+  return m(".slds-form-element", attrs.wrapper, [
     m("label.slds-form-element__label", {
       for: attrs.name
     }, [
@@ -110,6 +110,26 @@ form.wrapper.stacked = {
     return m("form.slds-form--stacked", vnode.attrs,[
       vnode.children
     ])
+  }
+
+};
+
+form.wrapper.compound = {
+
+  view: function (vnode) {
+    return vnode.attrs.rows.map(function (row) {
+      return [m("fieldset.slds-form--compound", [
+          m("legend.slds-form-element__label.slds-text-title--caps", row.legend),
+          m(".form-element__group", [
+            m(".slds-form-element__row", [
+              row.elements.map(function (element) {
+                return element
+              })
+            ])
+          ])
+        ]
+      )]
+    })
   }
 
 };
