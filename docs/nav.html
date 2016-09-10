@@ -14,8 +14,7 @@
 </div>
 
 <script src="mithril.js"></script>
-<script src="navigation.js"></script>
-<script src="icons.js"></script>
+<script src="bundle.js"></script>
 <script src="faker.min.js"></script>
 <script src="helpers.js"></script>
 
@@ -24,7 +23,7 @@
   var navTest = [
     {
       "label": "Main",
-      "icon": icon.utility("custom_apps", {class: "slds-m-right--x-small", style: "width: 1.2rem; height: 1.5rem"}),
+      "icon": mlds.icon.utility("custom_apps", {class: "slds-m-right--x-small", style: "width: 1.2rem; height: 1.5rem"}),
       "sub": [
         {
           "label": "One",
@@ -50,7 +49,7 @@
     },
     {
       "label": "Another Nav",
-      "icon": icon.utility("moneybag", {class: "slds-m-right--x-small", style: "width: 1.2rem; height: 1.5rem"}),
+      "icon": mlds.icon.utility("moneybag", {class: "slds-m-right--x-small", style: "width: 1.2rem; height: 1.5rem"}),
       "sub": [
         {
           "label": "Another 1",
@@ -75,7 +74,7 @@
                 m(".content", [
                   m("section", { style: "width: 320px" }, [
                     m("h2.slds-m-bottom--medium.desc", "Navigation"),
-                    m(nav, {
+                    m(mlds.nav, {
                       nav: {
                         style: "background: #FAFAFB",
                         class: "slds-navigation-list--vertical-inverse"
