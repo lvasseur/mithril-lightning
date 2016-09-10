@@ -14,8 +14,7 @@
 </div>
 
 <script src="mithril.js"></script>
-<script src="icons.js"></script>
-<script src="form.js"></script>
+<script src="bundle.js"></script>
 <script src="faker.min.js"></script>
 <script src="helpers.js"></script>
 
@@ -55,7 +54,7 @@
           m(".content", [
             m("section", [
               m("h2.slds-m-bottom--medium.desc", "Input"),
-              form.input({
+              mlds.form.input({
                 label: "Label: " + inputTest(),
                 input: {
                   oninput: m.withAttr("value", inputTest),
@@ -67,7 +66,7 @@
             m("hr"),
             m("section", [
               m("h2.slds-m-bottom--medium.desc", "Textarea"),
-              form.textarea({
+              mlds.form.textarea({
                 label: "Textarea label",
                 textarea: {
                   oninput: m.withAttr("value", textareaTest),
@@ -80,7 +79,7 @@
             m("hr"),
             m("section", [
               m("h2.slds-m-bottom--medium.desc", "Radio"),
-              form.radio({
+              mlds.form.radio({
                 label: "Radio label: " + radioTest,
                 name: "radioTest",
                 onclick: m.withAttr("value", radioTest),
@@ -90,7 +89,7 @@
             m("hr"),
             m("section", [
               m("h2.slds-m-bottom--medium.desc", "Radio Group"),
-              form.radioGroup({
+              mlds.form.radioGroup({
                 label: "Radio Group label: " + radioGroupTest,
                 name: "radioGroupTest",
                 onclick: m.withAttr("value", radioGroupTest),
@@ -100,7 +99,7 @@
             m("hr"),
             m("section", [
               m("h2.slds-m-bottom--medium.desc", "Checkbox"),
-              form.checkbox({
+              mlds.form.checkbox({
                 label: "Is checked: " + checkboxTest,
                 name: "checkboxTest",
                 checkbox: {
