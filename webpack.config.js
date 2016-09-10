@@ -7,5 +7,10 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/dist'
   },
-  watch: true
+  watch: true,
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: true
+    })
+  ]
 };
