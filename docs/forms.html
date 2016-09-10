@@ -14,8 +14,7 @@
 </div>
 
 <script src="mithril.js"></script>
-<script src="icons.js"></script>
-<script src="form.js"></script>
+<script src="bundle.js"></script>
 <script src="faker.min.js"></script>
 <script src="helpers.js"></script>
 
@@ -39,84 +38,84 @@
     }
   ];
   var formElementsHorizontal = [
-    form.input({
+    mlds.form.input({
       label: "Label1",
       input: {
         placeholder: "Placeholder Label1",
         name: "label1",
       }
     }),
-    form.input({
+    mlds.form.input({
       label: "Label2",
       input: {
         placeholder: "Placeholder Label2",
         name: "label2"
       }
     }),
-    form.input({
+    mlds.form.input({
       label: "Label3",
       input: {
         placeholder: "Placeholder Label3",
         name: "label3"
       }
     }),
-    form.input({
+    mlds.form.input({
       label: "Label4",
       input: {
         placeholder: "Placeholder Label4",
         name: "label4"
       }
     }),
-    form.checkbox({
+    mlds.form.checkbox({
       label: "Is checked",
       name: "checkboxTest",
       checkbox: {
         name: "checkebox"
       }
     }),
-    form.radioGroup({
+    mlds.form.radioGroup({
       label: "Radio Group label: ",
       name: "radio",
       itens: radioItens
     })
   ];
   var formElementsStacked = [
-    form.input({
+    mlds.form.input({
       label: "Label1",
       input: {
         placeholder: "Placeholder Label1",
         name: "s_label1",
       }
     }),
-    form.input({
+    mlds.form.input({
       label: "Label2",
       input: {
         placeholder: "Placeholder Label2",
         name: "s_label2"
       }
     }),
-    form.input({
+    mlds.form.input({
       label: "Label3",
       input: {
         placeholder: "Placeholder Label3",
         name: "s_label3"
       }
     }),
-    form.input({
+    mlds.form.input({
       label: "Label4",
       input: {
         placeholder: "Placeholder Label4",
         name: "s_label4"
       }
     }),
-    form.checkbox({
+    mlds.form.checkbox({
       label: "Is checked",
       name: "checkboxTest",
       checkbox: {
         name: "s_checkebox"
       }
     }),
-    form.radioGroup({
+    mlds.form.radioGroup({
       label: "Radio Group label: ",
       name: "s_radio",
       itens: radioItens
@@ -126,7 +125,7 @@
         {
           legend: "One",
           elements: [
-            form.input({
+            mlds.form.input({
               label: "Label1",
               input: {
                 placeholder: "Placeholder Label1",
@@ -136,7 +135,7 @@
                 class: "slds-size--1-of-2"
               }
             }),
-            form.input({
+            mlds.form.input({
               label: "Label2",
               input: {
                 placeholder: "Placeholder Label2",
@@ -151,7 +150,7 @@
         {
           legend: "Two",
           elements: [
-            form.input({
+            mlds.form.input({
               label: "Label3",
               input: {
                 placeholder: "Placeholder Label3",
@@ -161,7 +160,7 @@
                 class: "slds-size--1-of-3"
               }
             }),
-           form.input({
+            mlds.form.input({
               label: "Label4",
               input: {
                 placeholder: "Placeholder Label4",
@@ -171,7 +170,7 @@
                class: "slds-size--1-of-3"
              }
             }),
-            form.input({
+            mlds.form.input({
               label: "Label5",
               input: {
                 placeholder: "Placeholder Label4",
@@ -212,7 +211,7 @@
                 m(".content", [
                   m("section", [
                     m("h2.slds-m-bottom--medium.desc", "Horizontal"),
-                    m(form.wrapper.horizontal, form.bindsData(formDataHorizontal), formElementsHorizontal)
+                    m(mlds.form.wrapper.horizontal, mlds.form.bindsData(formDataHorizontal), formElementsHorizontal)
                   ]),
                   m("ol", [
                     Object.keys(formDataHorizontal).map(function (key) {
@@ -222,7 +221,7 @@
                   m("hr"),
                   m("section", [
                     m("h2.slds-m-bottom--medium.desc", "Stacked Form"),
-                    m(form.wrapper.stacked, form.bindsData(formDataStacked), formElementsStacked)
+                    m(mlds.form.wrapper.stacked, mlds.form.bindsData(formDataStacked), formElementsStacked)
                   ]),
                   m("ol", [
                     Object.keys(formDataStacked).map(function (key) {
@@ -233,7 +232,7 @@
                   m("section", [
                     m("h2.slds-m-bottom--medium.desc", "Compound Form"),
                     m("form", [
-                      m(form.wrapper.compound, {
+                      m(mlds.form.wrapper.compound, {
                         compound: {},
                         rows: formElementsCompound
                       })])
