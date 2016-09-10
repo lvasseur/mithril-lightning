@@ -42,14 +42,16 @@
   var Table = m(mlds.datatable, {
     fields: bookFields,
     data: generator.array(bookModel, 5),
-    key: "id"
+    key: "id",
+    link: "/entity/"
   });
 
   var TableStriped = m(mlds.datatable, {
     isStriped: true,
     fields: bookFields,
     data: generator.array(bookModel, 5),
-    key: "id"
+    key: "id",
+    link: "/test/"
   });
 
   m.render(document.getElementById("app"), [

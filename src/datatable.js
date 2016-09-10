@@ -33,7 +33,10 @@ var Datatable = {
               if (key === vnode.attrs.key) {
                 return m("th[scope='row']", [
                   m(".slds-truncate", [
-                    m("a[href='/']", { oncreate: m.route.link }, row[key])
+                    m("a", {
+                      href: vnode.attrs.link + row[key],
+                      oncreate: m.route.link
+                    }, row[key])
                   ])
                 ])
               } else {
