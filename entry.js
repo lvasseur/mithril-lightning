@@ -7,6 +7,7 @@ mlds.icon = require("./src/icons.js");
 mlds.menu = require("./src/menu.js");
 mlds.modal = require("./src/modal.js");
 mlds.nav = require("./src/navigation.js");
+mlds.globalheader = require("./src/globalheader.js");
 
 module.exports = mlds;
 
