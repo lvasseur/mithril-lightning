@@ -48,7 +48,25 @@
                 icon: mlds.icon.standard("case"),
                 desc: "Simple desc",
                 actionsOne: lvlOne
-              })
+              }),
+              m("hr"),
+              m("h2.slds-m-bottom--medium.desc", "Record Home"),
+              m(mlds.pageheader.record, {
+                type: "Test",
+                title: "Test Title",
+                icon: mlds.icon.standard("people"),
+                headerFields: {
+                  "href": "ID",
+                  "name": "Nome",
+                  "another": "Another"
+                },
+                record: {
+                  href: "123445",
+                  name: "Record Test",
+                  another: "Outro campo"
+                },
+                actions: lvlOne
+              }),
             ])
           ])
         ]),

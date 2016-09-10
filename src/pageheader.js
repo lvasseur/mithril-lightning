@@ -42,5 +42,48 @@ Pageheader.home = {
 
 };
 
+Pageheader.record = {
+
+  view: function (vnode) {
+
+    var headerFields = vnode.attrs.headerFields;
+    var record = vnode.attrs.record || {};
+
+    console.log(headerFields);
+    return [m(".slds-page-header[role='banner']", [
+      m(".slds-grid", [
+        m(".slds-col.slds-has-flexi-truncate", [
+          m(".slds-media.slds-no-space.slds-grow", [
+            m(".slds-media__figure", [
+              vnode.attrs.icon
+            ]),
+            m(".slds-media__body", [
+              m("p.slds-text-title--caps.slds-line-height--reset", vnode.attrs.type),
+              m("h1.slds-page-header__title.slds-m-right--small.slds-align-middle.slds-truncate", { title: vnode.attrs.title }, vnode.attrs.title)
+            ])
+          ])
+        ]),
+        m(".slds-col.slds-no-flex.slds-grid.slds-align-top", [
+          m(".slds-button-group[role='group']", [
+            vnode.attrs.actions
+          ])
+        ])
+      ]),
+      m("ul.slds-grid.slds-page-header__detail-row", [
+        headerFields ? Object.keys(headerFields).map(function (field) {
+
+          return m("li.slds-page-header__detail-block", [
+            m("p.slds-text-title.slds-truncate.slds-m-bottom--xx-small", { title: headerFields[field] }, headerFields[field]),
+            m("p.slds-text-body--regular.slds-truncate", record[field])
+          ])
+
+        })
+        : ""
+      ])
+    ])]
+  }
+
+};
+
 
 module.exports = Pageheader;
