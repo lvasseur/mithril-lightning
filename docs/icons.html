@@ -14,7 +14,7 @@
 </div>
 
 <script src="mithril.js"></script>
-<script src="icons.js"></script>
+<script src="bundle.js"></script>
 <script src="faker.min.js"></script>
 <script src="helpers.js"></script>
 
@@ -29,27 +29,27 @@
       m(".content", [
         m("section", [
           m("h2.slds-m-bottom--medium.desc", "Action Icons"),
-          icon.action("canvas")
+          mlds.icon.action("canvas")
         ]),
         m("hr"),
         m("section", [
           m("h2.slds-m-bottom--medium.desc", "Custom"),
-          icon.custom("custom92")
+          mlds.icon.custom("custom92")
         ]),
         m("hr"),
         m("section", [
           m("h2.slds-m-bottom--medium.desc", "Doctype"),
-          icon.doctype("html")
+          mlds.icon.doctype("html")
         ]),
         m("hr"),
         m("section", [
           m("h2.slds-m-bottom--medium.desc", "Standard"),
-          icon.standard("feed")
+          mlds.icon.standard("feed")
         ]),
         m("hr"),
         m("section", [
           m("h2.slds-m-bottom--medium.desc", "Utility"),
-          icon.utility("answer")
+          mlds.icon.utility("answer")
         ])
       ])
     ])

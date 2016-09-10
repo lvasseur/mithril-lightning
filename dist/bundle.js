@@ -49,7 +49,7 @@
 	mlds.card = __webpack_require__(1);
 	mlds.datatable = __webpack_require__(2);
 	mlds.form = __webpack_require__(3);
-	mlds.icons = __webpack_require__(4);
+	mlds.icon = __webpack_require__(4);
 	mlds.menu = __webpack_require__(5);
 	mlds.modal = __webpack_require__(6);
 	mlds.nav = __webpack_require__(7);
