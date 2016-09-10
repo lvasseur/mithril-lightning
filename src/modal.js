@@ -1,21 +1,13 @@
 'use strict';
 
-var Modal = {
+var mlds = {
 
   show: function (modal, id) {
-    modalWrapper = document.createElement("div");
+    var modalWrapper = document.createElement("div");
     modalWrapper.id = id;
     modal.state.root = modalWrapper;
     document.body.appendChild(modalWrapper);
     m.render(modalWrapper, modal);
-  },
-
-  oninit: function (vnode) {
-    console.log("oninit");
-  },
-
-  oncreate: function (vnode) {
-    console.log("oncreate");
   },
 
   modalClose: function (e) {
@@ -60,4 +52,4 @@ var Modal = {
 
 };
 
-module.exports = Modal;
+module.exports = mlds;

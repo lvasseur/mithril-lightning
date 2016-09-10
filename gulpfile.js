@@ -14,7 +14,7 @@ gulp.task('connect', function() {
 });
 
 gulp.task('js', function () {
-  gulp.src('./src/**/*.js')
+  gulp.src(['./src/**/*.js', './entry.js', './webpack.config.js'])
     .pipe(connect.reload())
 });
 
@@ -29,7 +29,7 @@ gulp.task('styles', function() {
 });
 
 gulp.task('watch', function () {
-  gulp.watch(['./src/**/*.js'], ['js', 'webpack']);
+  gulp.watch(['./src/**/*.js', './entry.js', './webpack.config.js'], ['js', 'webpack']);
   gulp.watch(['./src/**/*.html', './docs/**/*.html'], ['html', 'webpack']);
   gulp.watch(['./docs/styles/*.css'], ['styles'])
 });

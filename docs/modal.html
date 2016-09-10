@@ -13,7 +13,7 @@
   </div>
 
   <script src="mithril.js"></script>
-  <script src="modal.js"></script>
+  <script src="bundle.js"></script>
   <script src="faker.min.js"></script>
   <script src="helpers.js"></script>
 
@@ -33,7 +33,7 @@
                 m("h2.slds-m-bottom--medium.desc", "Basic modal"),
                 m("button.slds-button.slds-button--brand", {
                   onclick: function () {
-                    Modal.show(m(Modal, {
+                    mlds.modal.show(m(mlds.modal, {
                       header: m("h2.slds-text-heading--medium", "Basic"),
                       content: faker.lorem.paragraphs(6),
                       footer: "simple footer"
@@ -46,7 +46,7 @@
                 m("h2.slds-m-bottom--medium.desc", "Header empty"),
                 m("button.slds-button.slds-button--brand", {
                   onclick: function () {
-                    Modal.show(m(Modal, {
+                    mlds.modal.show(m(mlds.modal, {
                       content: faker.lorem.paragraph()
                     }), "modal-test--2")
                   }
@@ -57,7 +57,7 @@
                 m("h2.slds-m-bottom--medium.desc", "Footer removed"),
                 m("button.slds-button.slds-button--brand", {
                   onclick: function () {
-                    Modal.show(m(Modal, {
+                    mlds.modal.show(m(mlds.modal, {
                       header: m("h2.slds-text-heading--medium", "Modal Header"),
                       content: faker.lorem.paragraph()
                     }), "modal-test--3")
