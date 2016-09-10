@@ -14,7 +14,7 @@
 </div>
 
 <script src="mithril.js"></script>
-<script src="datatable.js"></script>
+<script src="bundle.js"></script>
 <script src="faker.min.js"></script>
 <script src="helpers.js"></script>
 
@@ -39,13 +39,13 @@
     short_description: "Description"
   };
 
-  var Table = m(Datatable, {
+  var Table = m(mlds.datatable, {
     fields: bookFields,
     data: generator.array(bookModel, 5),
     key: "id"
   });
 
-  var TableStriped = m(Datatable, {
+  var TableStriped = m(mlds.datatable, {
     isStriped: true,
     fields: bookFields,
     data: generator.array(bookModel, 5),
