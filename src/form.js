@@ -6,7 +6,6 @@ form.bindsData = function (data) {
   return {
     onchange: function (e) {
       // data[e.target.name](e.target.value);
-      console.log(e.target.type);
       switch (e.target.type) {
         case 'checkbox':
           data[e.target.name](e.target.checked);
