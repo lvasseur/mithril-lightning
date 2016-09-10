@@ -13,9 +13,7 @@
 </div>
 
 <script src="mithril.js"></script>
-<script src="card.js"></script>
-<script src="datatable.js"></script>
-<script src="icons.js"></script>
+<script src="bundle.js"></script>
 <script src="faker.min.js"></script>
 <script src="helpers.js"></script>
 
@@ -24,7 +22,7 @@
   var tiles = [
     m(".slds-tile.slds-media.slds-card__tile.slds-col--padded", [
       m(".slds-media__figure", [
-        icon.standard("contact", {size: "small"})
+        mlds.icon.standard("contact", {size: "small"})
       ]),
       m(".slds-media__body", [
         m(".slds-grid.slds-grid--align-spread.slds-has-flexi-truncate", [
@@ -56,7 +54,7 @@
     ]),
     m(".slds-tile.slds-media.slds-card__tile.slds-col--padded", [
       m(".slds-media__figure", [
-        icon.standard("contact", {size: "small"})
+        mlds.icon.standard("contact", {size: "small"})
       ]),
       m(".slds-media__body", [
         m(".slds-grid.slds-grid--align-spread.slds-has-flexi-truncate", [
@@ -88,7 +86,7 @@
     ]),
     m(".slds-tile.slds-media.slds-card__tile.slds-col--padded", [
       m(".slds-media__figure", [
-        icon.standard("contact", {size: "small"})
+        mlds.icon.standard("contact", {size: "small"})
       ]),
       m(".slds-media__body", [
         m(".slds-grid.slds-grid--align-spread.slds-has-flexi-truncate", [
@@ -139,7 +137,7 @@
     short_description: "Description"
   };
 
-  var Table = m(Datatable, {
+  var Table = m(mlds.datatable, {
     fields: bookFields,
     data: generator.array(bookModel, 5),
     key: "id"
@@ -155,7 +153,7 @@
       m(".content", [
         m("section", [
           m("h2.slds-m-bottom--medium.desc", "Base"),
-          m(Card, {
+          m(mlds.card, {
             header: faker.lorem.words(2),
             body: {
               content: faker.lorem.paragraph(),
@@ -168,7 +166,7 @@
         m("section", [
           m("h2.slds-m-bottom--medium.desc", "Base Narrow"),
           m("[style='max-width:400px']", [
-            m(Card, {
+            m(mlds.card, {
               narrow: true,
               header: faker.lorem.words(2),
               body: {
@@ -182,10 +180,10 @@
         m("hr"),
         m("section", [
           m("h2.slds-m-bottom--medium.desc", "Related List With Tiles"),
-          m(Card, {
+          m(mlds.card, {
             header: faker.lorem.words(2),
             body: {
-              content: Card.tilesWrapper(tiles)
+              content: mlds.card.tilesWrapper(tiles)
             },
             footer: faker.lorem.words(1)
           })
@@ -193,7 +191,7 @@
         m("hr"),
         m("section", [
           m("h2.slds-m-bottom--medium.desc", "Related List With Table"),
-          m(Card, {
+          m(mlds.card, {
             header: faker.lorem.words(2),
             body: {
               content: Table
@@ -205,11 +203,11 @@
         m("section", [
           m("h2.slds-m-bottom--medium.desc", "Related List Narrow"),
           m("[style='max-width:400px']", [
-            m(Card, {
+            m(mlds.card, {
               narrow: true,
               header: faker.lorem.words(2),
               body: {
-                content: Card.tilesWrapper(tiles),
+                content: mlds.card.tilesWrapper(tiles),
               },
               footer: faker.lorem.words(1)
             })
