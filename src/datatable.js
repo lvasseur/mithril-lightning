@@ -30,11 +30,11 @@ var Datatable = {
           return m("tr", { key: row[vnode.attrs.key] }, [
             // Loop in data here and validate if is th or td
             vnode.state.fields.map(function (key) {
-              if (key === vnode.attrs.key) {
+              if (key === vnode.attrs.link.field) {
                 return m("th[scope='row']", [
                   m(".slds-truncate", [
                     m("a", {
-                      href: vnode.attrs.link + row[key],
+                      href: vnode.attrs.link.url + row[vnode.attrs.key],
                       oncreate: m.route.link
                     }, row[key])
                   ])

@@ -20,6 +20,7 @@
   <script>
     m.mount(document.getElementById("app"), {
       view: function () {
+        console.log("ok");
         return [m(".navigation"),
           m("main", [
             m(".masthead", [
@@ -35,7 +36,15 @@
                   onclick: function () {
                     mlds.modal.show(m(mlds.modal, {
                       header: m("h2.slds-text-heading--medium", "Basic"),
-                      content: faker.lorem.paragraphs(6),
+                      content: mlds.form.input({
+                        label: "Label1",
+                        input: {
+                          placeholder: "Placeholder Label1",
+                          name: "label1",
+                          oninput: function () {
+                          }
+                        }
+                      }),
                       footer: "simple footer"
                     }), "modal-test--1")
                   }

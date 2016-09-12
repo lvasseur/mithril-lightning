@@ -1,5 +1,11 @@
 var Pageheader = {};
 
+
+function objByValue(item) {
+  console.log(this);
+  return item[this["field"]] === this["value"];
+};
+
 Pageheader.home = {
 
   view: function (vnode) {
@@ -48,8 +54,7 @@ Pageheader.record = {
 
     var headerFields = vnode.attrs.headerFields;
     var record = vnode.attrs.record || {};
-
-    console.log(headerFields);
+    console.log(record);
     return [m(".slds-page-header[role='banner']", [
       m(".slds-grid", [
         m(".slds-col.slds-has-flexi-truncate", [
@@ -72,11 +77,23 @@ Pageheader.record = {
       m("ul.slds-grid.slds-page-header__detail-row", [
         headerFields ? Object.keys(headerFields).map(function (field) {
 
-          return m("li.slds-page-header__detail-block", [
-            m("p.slds-text-title.slds-truncate.slds-m-bottom--xx-small", { title: headerFields[field] }, headerFields[field]),
-            m("p.slds-text-body--regular.slds-truncate", record[field])
-          ])
+          if (typeof headerFields[field] === "object") {
+            var result = record[field].find(objByValue, headerFields[field]);
+            if (result) {
+              return m("li.slds-page-header__detail-block", [
+                m("p.slds-text-title.slds-truncate.slds-m-bottom--xx-small", { title: headerFields[field]["name"] }, headerFields[field]["name"]),
+                m("p.slds-text-body--regular.slds-truncate", result[headerFields[field]["get"]])
+              ])
+            } else {
+              return "Nothing"
+            }
 
+          } else {
+            return m("li.slds-page-header__detail-block", [
+              m("p.slds-text-title.slds-truncate.slds-m-bottom--xx-small", { title: headerFields[field] }, headerFields[field]),
+              m("p.slds-text-body--regular.slds-truncate", record[field])
+            ])
+          }
         })
         : ""
       ])
@@ -85,5 +102,5 @@ Pageheader.record = {
 
 };
 
-
+var a = {field: "type", value: "test1"};
 module.exports = Pageheader;

@@ -58,12 +58,28 @@
                 headerFields: {
                   "href": "ID",
                   "name": "Nome",
-                  "another": "Another"
+                  "another": "Another",
+                  "test2": {
+                    "field": "type",
+                    "value": "test1",
+                    "get": "value",
+                    "name": "Compound"
+                  }
                 },
                 record: {
                   href: "123445",
                   name: "Record Test",
-                  another: "Outro campo"
+                  another: "Outro campo",
+                  test2: [
+                    {
+                      type: "test1",
+                      value: "Value 1"
+                    },
+                    {
+                      type: "test2",
+                      value: "Value 2"
+                    }
+                  ]
                 },
                 actions: lvlOne
               }),

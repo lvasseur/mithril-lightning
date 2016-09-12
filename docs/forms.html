@@ -125,7 +125,8 @@
         {
           legend: "One",
           elements: [
-            mlds.form.input({
+            [
+              mlds.form.input({
               label: "Label1",
               input: {
                 placeholder: "Placeholder Label1",
@@ -135,7 +136,7 @@
                 class: "slds-size--1-of-2"
               }
             }),
-            mlds.form.input({
+              mlds.form.input({
               label: "Label2",
               input: {
                 placeholder: "Placeholder Label2",
@@ -145,41 +146,108 @@
                 class: "slds-size--1-of-2"
               }
             })
+            ]
           ]
         },
         {
           legend: "Two",
           elements: [
-            mlds.form.input({
-              label: "Label3",
-              input: {
-                placeholder: "Placeholder Label3",
-                name: "s_label3"
-              },
-              wrapper: {
-                class: "slds-size--1-of-3"
-              }
-            }),
-            mlds.form.input({
-              label: "Label4",
-              input: {
-                placeholder: "Placeholder Label4",
-                name: "s_label4"
-              },
-             wrapper: {
-               class: "slds-size--1-of-3"
-             }
-            }),
-            mlds.form.input({
-              label: "Label5",
-              input: {
-                placeholder: "Placeholder Label4",
-                name: "s_label4"
-              },
-             wrapper: {
-               class: "slds-size--1-of-3"
-             }
-            })
+            [
+              mlds.form.input({
+                label: "Label3",
+                input: {
+                  placeholder: "Placeholder Label3",
+                  name: "s_label4"
+                },
+                wrapper: {
+                  class: "slds-size--1-of-1"
+                }
+              }),
+              mlds.form.input({
+                label: "Label4",
+                input: {
+                  placeholder: "Placeholder Label4",
+                  name: "s_label5"
+                },
+               wrapper: {
+                 class: "slds-size--1-of-3"
+               }
+              }),
+            ],
+            [
+              mlds.form.input({
+                label: "Label1",
+                input: {
+                  placeholder: "Placeholder Label1",
+                  name: "s_label1"
+                },
+                wrapper: {
+                  class: "slds-size--1-of-2"
+                }
+              }),
+              mlds.form.input({
+                label: "Label1",
+                input: {
+                  placeholder: "Placeholder Label1",
+                  name: "s_label1"
+                },
+                wrapper: {
+                  class: "slds-size--1-of-2"
+                }
+              }),
+              mlds.form.input({
+                label: "Label2",
+                input: {
+                  placeholder: "Placeholder Label2",
+                  name: "s_label2"
+                },
+                wrapper: {
+                  class: "slds-size--1-of-2"
+                }
+              })
+            ],
+            [
+              mlds.form.input({
+                label: "Label1",
+                input: {
+                  placeholder: "Placeholder Label1",
+                  name: "s_label1"
+                },
+                wrapper: {
+                  class: "slds-size--1-of-2"
+                }
+              }),
+              mlds.form.input({
+                label: "Label2",
+                input: {
+                  placeholder: "Placeholder Label2",
+                  name: "s_label2"
+                },
+                wrapper: {
+                  class: "slds-size--1-of-2"
+                }
+              }),
+              mlds.form.input({
+                label: "Label1",
+                input: {
+                  placeholder: "Placeholder Label1",
+                  name: "s_label1"
+                },
+                wrapper: {
+                  class: "slds-size--1-of-2"
+                }
+              }),
+              mlds.form.input({
+                label: "Label2",
+                input: {
+                  placeholder: "Placeholder Label2",
+                  name: "s_label2"
+                },
+                wrapper: {
+                  class: "slds-size--1-of-2"
+                }
+              })
+            ]
           ]
         }
       ];
@@ -199,6 +267,14 @@
     s_label4: m.prop(""),
     s_checkebox: m.prop(false),
     s_radio: m.prop("")
+  };
+  var formDataCompound = {
+    s_label1: m.prop(""),
+    s_label2: m.prop(""),
+    s_label3: m.prop(""),
+    s_label4: m.prop(""),
+    s_label5: m.prop(""),
+    s_label6: m.prop(""),
   };
 
   m.mount(document.getElementById("app"), {
@@ -232,10 +308,7 @@
                   m("section", [
                     m("h2.slds-m-bottom--medium.desc", "Compound Form"),
                     m("form", [
-                      m(mlds.form.wrapper.compound, {
-                        compound: {},
-                        rows: formElementsCompound
-                      })])
+                      m(mlds.form.wrapper.compound, mlds.form.bindsData(formDataStacked),formElementsCompound)])
                   ])
                 ])
               ])

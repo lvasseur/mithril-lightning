@@ -43,7 +43,10 @@
     fields: bookFields,
     data: generator.array(bookModel, 5),
     key: "id",
-    link: "/entity/"
+    link: {
+      url: "/entity/",
+      field: "id"
+    }
   });
 
   var TableStriped = m(mlds.datatable, {
@@ -51,7 +54,10 @@
     fields: bookFields,
     data: generator.array(bookModel, 5),
     key: "id",
-    link: "/test/"
+    link: {
+      url: "/test/",
+      field: "title"
+    }
   });
 
   m.render(document.getElementById("app"), [

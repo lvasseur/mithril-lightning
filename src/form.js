@@ -67,7 +67,7 @@ form.radioGroup = function (attrs) {
     m(".slds-form-element__control", [
       m(".slds-radio--button-group", [
         attrs.itens.map(function (radio) {
-        return m("label.slds-button.slds-radio--button", [
+          return m("label.slds-button.slds-radio--button", [
             m("input[type='radio']", {
               name: attrs.name,
               value: radio.value,
@@ -96,7 +96,7 @@ form.checkbox = function (attrs) {
 form.wrapper.horizontal = {
 
   view: function (vnode) {
-    return m("form.slds-form--horizontal", vnode.attrs,[
+    return m("form.slds-form--horizontal", vnode.attrs, [
       vnode.children
     ])
   }
@@ -106,7 +106,7 @@ form.wrapper.horizontal = {
 form.wrapper.stacked = {
 
   view: function (vnode) {
-    return m("form.slds-form--stacked", vnode.attrs,[
+    return m("form.slds-form--stacked", vnode.attrs, [
       vnode.children
     ])
   }
@@ -116,15 +116,13 @@ form.wrapper.stacked = {
 form.wrapper.compound = {
 
   view: function (vnode) {
-    return vnode.attrs.rows.map(function (row) {
-      return [m("fieldset.slds-form--compound", [
+    return vnode.children.map(function (row) {
+      return [m("fieldset.slds-form--compound", vnode.attrs, [
           m("legend.slds-form-element__label.slds-text-title--caps", row.legend),
           m(".form-element__group", [
-            m(".slds-form-element__row", [
-              row.elements.map(function (element) {
-                return element
-              })
-            ])
+            row.elements.map(function (element) {
+              return m(".slds-form-element__row", element)
+            })
           ])
         ]
       )]
