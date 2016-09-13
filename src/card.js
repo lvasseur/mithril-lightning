@@ -15,9 +15,7 @@ var Card = {
       m("header.slds-card__header.slds-grid", [
         m(".slds-media.slds-media--center.slds-has-flexi-truncate", [
           m(".slds-media__figure", [
-            m("svg.slds-icon.slds-icon-standard-contact.slds-icon--small[aria-hidden='true']", [
-              m("use[xlink:href='/assets/icons/standard-sprite/svg/symbols.svg#contact']")
-            ])
+            vnode.attrs.icon
           ]),
           m(".slds-media__body.slds-truncate", [
             m("h2", [

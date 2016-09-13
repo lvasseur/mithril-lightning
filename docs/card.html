@@ -140,7 +140,11 @@
   var Table = m(mlds.datatable, {
     fields: bookFields,
     data: generator.array(bookModel, 5),
-    key: "id"
+    key: "id",
+    link: {
+      url: "/test/",
+      field: "id"
+    }
   });
 
   m.render(document.getElementById("app"), [
@@ -155,6 +159,7 @@
           m("h2.slds-m-bottom--medium.desc", "Base"),
           m(mlds.card, {
             header: faker.lorem.words(2),
+            icon: mlds.icon.standard("document", {size: "small"}),
             body: {
               content: faker.lorem.paragraph(),
               class: 'slds-p-horizontal--large slds-text-align--center'

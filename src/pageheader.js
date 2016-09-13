@@ -2,7 +2,6 @@ var Pageheader = {};
 
 
 function objByValue(item) {
-  console.log(this);
   return item[this["field"]] === this["value"];
 };
 
@@ -54,7 +53,6 @@ Pageheader.record = {
 
     var headerFields = vnode.attrs.headerFields;
     var record = vnode.attrs.record || {};
-    console.log(record);
     return [m(".slds-page-header[role='banner']", [
       m(".slds-grid", [
         m(".slds-col.slds-has-flexi-truncate", [
