@@ -4,10 +4,27 @@ var Lookups = {
 
     vnode.state.list = vnode.attrs.data.list;
 
-    vnode.state.isOpen = false;
+    vnode.state.isOpen = m.prop(false);
 
     vnode.state.selected = vnode.attrs.value;
 
+    vnode.state.onOff = function () {
+      if (vnode.state.isOpen) vnode.state.isOpen(false)
+      else vnode.state.isOpen(true)
+    };
+
+    vnode.state.handleKey = function (e) {
+      if (e.keyCode == 27) {
+        e.target.blur();
+        vnode.state.onOff();
+        m.redraw();
+      }
+    };
+    document.body.addEventListener("keyup", vnode.state.handleKey);
+  },
+
+  onremove: function (vnode) {
+    document.body.removeEventListener("keyup", handleKey);
   },
 
   view: function (vnode) {
@@ -16,7 +33,7 @@ var Lookups = {
 
     return [
       m(".slds-form-element.slds-lookup[data-select='single']", {
-        class: vnode.state.isOpen ? "slds-is-open" : "",
+        class: vnode.state.isOpen() ? "slds-is-open" : "",
       }, [
         m("label.slds-form-element__label[for='lookup-348']", vnode.attrs.label),
         m(".slds-form-element__control", [
@@ -43,7 +60,10 @@ var Lookups = {
                 placeholder: vnode.attrs.placeholder,
                 oninput: vnode.attrs.searchOninput,
                 onfocus: function (e) {
-                  vnode.state.isOpen = true;
+                  vnode.state.isOpen(true);
+                },
+                onblur: function (e) {
+                  vnode.state.onOff();
                 }
               })
             ])
@@ -58,7 +78,7 @@ var Lookups = {
                 onclick: function (e) {
                   vnode.state.selected(item);
                   vnode.attrs.query("");
-                  vnode.state.isOpen = false;
+                  vnode.state.isOpen(false);
                 }
               }, [
                 m("span.slds-lookup__item-action.slds-media.slds-media--center[role='option']", [
