@@ -6,7 +6,7 @@ var Lookups = {
 
     vnode.state.isOpen = m.prop(false);
 
-    vnode.state.selected = vnode.attrs.value;
+    vnode.state.selected = m.prop("");
 
     vnode.state.onOff = function () {
       if (vnode.state.isOpen) vnode.state.isOpen(false)
@@ -44,6 +44,7 @@ var Lookups = {
                 m("button.slds-button.slds-button--icon.slds-pill__remove", {
                   onclick: function (e) {
                     vnode.state.selected(false)
+                    vnode.attrs.value("");
                   }
                 }, [
                   m("svg.slds-button__icon[aria-hidden='true']", [
@@ -61,9 +62,6 @@ var Lookups = {
                 oninput: vnode.attrs.searchOninput,
                 onfocus: function (e) {
                   vnode.state.isOpen(true);
-                },
-                onblur: function (e) {
-                  vnode.state.onOff();
                 }
               })
             ])
@@ -77,6 +75,7 @@ var Lookups = {
                 key: item[key],
                 onclick: function (e) {
                   vnode.state.selected(item);
+                  vnode.attrs.value(item[key]);
                   vnode.attrs.query("");
                   vnode.state.isOpen(false);
                 }
