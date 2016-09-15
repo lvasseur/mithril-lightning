@@ -90,14 +90,17 @@ var Lookups = {
               ])
             }),
             m("li[role='presentation']", [
-              m("a", {href: vnode.attrs.newButton.url}, [
+              vnode.attrs.newButton ? m("a", {
+                href: vnode.attrs.newButton.url,
+                oncreate: m.route.link
+              }, [
                 m("span.slds-lookup__item-action.slds-lookup__item-action--label[id='lookup-option-356'][role='option']", [
                   m("svg.slds-icon.slds-icon--x-small.slds-icon-text-default[aria-hidden='true']", [
                     m("use[xlink:href='/assets/icons/utility-sprite/svg/symbols.svg#add']")
                   ]),
                   m("span.slds-truncate", vnode.attrs.newButton.label)
                 ])
-              ])
+              ]) : null
             ])
           ])
         ])
