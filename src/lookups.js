@@ -45,6 +45,9 @@ var Lookups = {
                   onclick: function (e) {
                     vnode.state.selected(false)
                     vnode.attrs.value("");
+                    if (typeof vnode.attrs.callbackUnselect === "function") {
+                      vnode.attrs.callbackUnselect()
+                    };
                   }
                 }, [
                   m("svg.slds-button__icon[aria-hidden='true']", [
@@ -58,6 +61,7 @@ var Lookups = {
                 m("use[xlink:href='/assets/icons/utility-sprite/svg/symbols.svg#search']")
               ]),
               m("input.slds-lookup__search-input.slds-input[role='combobox'][type='search']", {
+                disabled: vnode.attrs.disabled,
                 placeholder: vnode.attrs.placeholder,
                 oninput: vnode.attrs.searchOninput,
                 onfocus: function (e) {
@@ -78,6 +82,9 @@ var Lookups = {
                   vnode.attrs.value(item[key]);
                   vnode.attrs.query("");
                   vnode.state.isOpen(false);
+                  if (typeof vnode.attrs.callbackSelect === "function") {
+                    vnode.attrs.callbackSelect()
+                  };
                 }
               }, [
                 m("span.slds-lookup__item-action.slds-media.slds-media--center[role='option']", [
@@ -102,6 +109,8 @@ var Lookups = {
                 ])
               ]) : null
             ])
+
+
           ])
         ])
       ])

@@ -77,6 +77,11 @@
 
   var lookupSelected = m.prop(false);
 
+  var getCat = function (id) {
+    console.log("callback")
+    console.log(this.value())
+  };
+
   m.mount(document.getElementById("app"), {
     view: function () {
       return m(".navigation"),
@@ -97,13 +102,15 @@
                         return item.name.toLowerCase().indexOf(searchTerm) > -1 || item.description.toLowerCase().indexOf(searchTerm) > -1 ;
                       },
                       data: {
-                        list: lookupData,
+                        list: undefined,
                         key: "href"
                       },
                       newButton: {
                         url: "/test/new",
                         label: "New Company"
-                      }
+                      },
+                      callbackSelect: getCat,
+                      callbackUnselect: getCat
                     }),
                     m("p", lookupSelected())
                   ])
