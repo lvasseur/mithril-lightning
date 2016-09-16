@@ -11,10 +11,17 @@ var Datatable = {
     return m("thead", [
       m("tr.slds-text-heading--label", [
         this.fields.map(function (key) {
-          return m("th[scope='col']", [
-            // Labels here
-            m('.slds-truncate', fields[key])
-          ])
+          if (typeof fields[key] === "object") {
+            return m("th[scope='col']", [
+              // Labels here
+              m('.slds-truncate', fields[key]['label'])
+            ])
+          } else {
+            return m("th[scope='col']", [
+              // Labels here
+              m('.slds-truncate', fields[key])
+            ])
+          }
         })
       ])
     ])
@@ -22,6 +29,7 @@ var Datatable = {
 
   view: function(vnode) {
     var table = "table.slds-table.slds-table--bordered.slds-table--cell-buffer";
+    var fields = vnode.attrs.fields;
     if (this.isStriped) table += ".slds-table--striped";
     return m(table, [
       vnode.state.header(vnode.attrs.fields),
@@ -30,6 +38,11 @@ var Datatable = {
           return m("tr", { key: row[vnode.attrs.key] }, [
             // Loop in data here and validate if is th or td
             vnode.state.fields.map(function (key) {
+              if (typeof fields[key] === "object") {
+                return m("td[scope='row']", [
+                  m(".slds-truncate", row[key][fields[key]['field']])
+                ])
+              }
               if (key === vnode.attrs.link.field) {
                 return m("th[scope='row']", [
                   m(".slds-truncate", [

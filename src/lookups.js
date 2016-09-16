@@ -24,7 +24,7 @@ var Lookups = {
   },
 
   onremove: function (vnode) {
-    document.body.removeEventListener("keyup", handleKey);
+    document.body.removeEventListener("keyup", vnode.state.handleKey);
   },
 
   view: function (vnode) {
