@@ -10,12 +10,25 @@ var mlds = {
     m.render(modalWrapper, modal);
   },
 
-  modalClose: function (e) {
-    m.mount(this.state.root, null);
-    this.state.root.remove()
+  close: function (id) {
+    if (typeof id === "object") {
+      m.mount(this.state.root, null);
+      this.state.root.remove()
+    } else if (typeof id === "string") {
+      var modal = document.getElementById(id);
+      if (modal) {
+        m.mount(modal, null);
+        modal.remove();
+      }
+    }
+  },
+
+  onremove: function (vnode) {
+    console.log("modal_remove")
   },
 
   view: function (vnode) {
+    console.log("modal_view")
     return [
       m(".slds-modal.slds-fade-in-open[role='dialog'][tabindex='-1']", [
         m(".slds-modal__container", [
@@ -23,7 +36,7 @@ var mlds = {
             class: vnode.attrs.header ? "" : "slds-modal__header--empty"
           }, [
             m("button.slds-button.slds-button--icon-inverse.slds-modal__close", {
-              onclick: this.modalClose.bind(vnode)
+              onclick: this.close.bind(vnode)
             }, [
               m("svg.slds-button__icon.slds-button__icon--large", [
                 m("use[xlink:href='/assets/icons/action-sprite/svg/symbols.svg#close']")
