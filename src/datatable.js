@@ -38,11 +38,15 @@ var Datatable = {
           return m("tr", { key: row[vnode.attrs.key] }, [
             // Loop in data here and validate if is th or td
             vnode.state.fields.map(function (key) {
+
               if (typeof fields[key] === "object") {
+                var callback = fields[key]["callback"];
+                var cellValue = row[key][fields[key]['field']] || row[key];
                 return m("td[scope='row']", [
-                  m(".slds-truncate", row[key][fields[key]['field']])
+                  m(".slds-truncate", typeof callback === "function" ? callback(cellValue) : cellValue)
                 ])
               }
+
               if (key === vnode.attrs.link.field) {
                 return m("th[scope='row']", [
                   m(".slds-truncate", [
@@ -52,6 +56,7 @@ var Datatable = {
                     }, row[key])
                   ])
                 ])
+
               } else {
                 return m("td[scope='row']", [
                   m(".slds-truncate", row[key])

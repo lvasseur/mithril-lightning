@@ -35,8 +35,10 @@
     id: "#",
     title: "Title",
     author: {
-      "label": "Author",
-      "field": "name"
+      label: "Author",
+      callback: function (value) {
+        return value.toUpperCase()
+      }
     },
     price: "Price",
     short_description: "Description"
@@ -62,6 +64,7 @@
       field: "title"
     }
   });
+
 
   m.render(document.getElementById("app"), [
     m(".navigation"),
