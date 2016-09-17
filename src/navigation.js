@@ -9,6 +9,7 @@ var nav = {
   },
 
   view: function (vnode) {
+    vnode.state.active(m.route.get());
     return m(".slds-grid.slds-grid--vertical.slds-navigation-list--vertical", vnode.attrs.nav, [
       vnode.attrs.menus.map(function (menu) {
         return [

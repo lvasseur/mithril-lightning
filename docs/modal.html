@@ -108,7 +108,9 @@
                   onclick: function () {
                     mlds.modal.show(m(mlds.modal, {
                       header: m("h2.slds-text-heading--medium", "Basic"),
-                      content: m(mlds.form.wrapper.horizontal, mlds.form.bindsData(formDataHorizontal), formElementsHorizontal),
+                      content: [m(mlds.form.wrapper.horizontal, mlds.form.bindsData(formDataHorizontal), formElementsHorizontal),
+
+                      ],
                       footer:  m("button.slds-button.slds-button--brand", {
                         onclick: mlds.modal.close.bind(null, "modal-test--1")
                       }, "Save")
