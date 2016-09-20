@@ -1,34 +1,34 @@
 'use strict';
 
-var mlds = {
+var modal = {
 
-  show: function (modal, id) {
+  show: function (attr, id) {
     var modalWrapper = document.createElement("div");
-    modalWrapper.id = id;
-    modal.state.root = modalWrapper;
+    modalWrapper.id = id || "modal-default";
     document.body.appendChild(modalWrapper);
-    m.render(modalWrapper, modal);
+    attr['instanceId'] =  modalWrapper.id;
+    m.render(modalWrapper, m(mlds.modal, attr));
   },
 
   close: function (id) {
-    if (typeof id === "object") {
-      m.mount(this.state.root, null);
-      this.state.root.remove()
-    } else if (typeof id === "string") {
+
       var modal = document.getElementById(id);
       if (modal) {
         m.mount(modal, null);
         modal.remove();
       }
-    }
+
   },
 
   onremove: function (vnode) {
     console.log("modal_remove")
   },
 
+  oninit: function (vnode) {
+    vnode.state.instanceId = vnode.attrs.instanceId;
+  },
+
   view: function (vnode) {
-    console.log("modal_view")
     return [
       m(".slds-modal.slds-fade-in-open[role='dialog'][tabindex='-1']", [
         m(".slds-modal__container", [
@@ -36,7 +36,7 @@ var mlds = {
             class: vnode.attrs.header ? "" : "slds-modal__header--empty"
           }, [
             m("button.slds-button.slds-button--icon-inverse.slds-modal__close", {
-              onclick: this.close.bind(vnode)
+              onclick: this.close.bind(null, vnode.state.instanceId)
             }, [
               m("svg.slds-button__icon.slds-button__icon--large", [
                 m("use[xlink:href='/assets/icons/action-sprite/svg/symbols.svg#close']")
@@ -65,4 +65,4 @@ var mlds = {
 
 };
 
-module.exports = mlds;
+module.exports = modal;

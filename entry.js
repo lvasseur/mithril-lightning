@@ -9,7 +9,9 @@ mlds.modal = require("./src/modal.js");
 mlds.nav = require("./src/navigation.js");
 mlds.globalheader = require("./src/globalheader.js");
 mlds.pageheader = require("./src/pageheader.js");
-mlds.lookups = require("./src/lookups.js")
+mlds.lookups = require("./src/lookups.js");
+mlds.tabs = require("./src/tabs.js");
+
 
 module.exports = mlds;
 

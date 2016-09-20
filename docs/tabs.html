@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MLD - Tabs</title>
+
+  <link href="/assets/styles/salesforce-lightning-design-system.min.css" rel="stylesheet">
+  <link href="styles/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="app">
+</div>
+
+<script src="mithril.js"></script>
+<script src="bundle.js"></script>
+<script src="faker.min.js"></script>
+<script src="helpers.js"></script>
+
+<script>
+
+  var lvlOne = [m("button.slds-button.slds-button--neutral", "New Lead"),
+    m("button.slds-button.slds-button--neutral", "Import Leads"),
+    m(".slds-button--last", [
+      m("button.slds-button.slds-button--icon-border-filled[aria-haspopup='true']", [
+        m("svg.slds-button__icon[aria-hidden='true']", [
+          m("use[xlink:href='/assets/icons/utility-sprite/svg/symbols.svg#down']")
+        ]),
+        m("span.slds-assistive-text", "More Actions")
+      ])
+    ])];
+
+  m.mount(document.getElementById("app"), {
+    view: function () {
+      return [m(".navigation"),
+        m("main", [
+          m(".masthead", [
+            m("h1.", "Tabs"),
+            m("p", "A tab keeps related content in a single container that" +
+                    " is shown and hidden through navigation.")
+          ]),
+          m(".content", [
+            m("section", [
+              m("h2.slds-m-bottom--medium.desc", "Default"),
+                    m(mlds.tabs, {
+                      items: [
+                        {
+                          name: "tab1",
+                          label: "Tab 1"
+                        },
+                        {
+                          name: "tab2",
+                          label: "Tab 2"
+                        },
+                        {
+                          name: "tab3",
+                          label: "Tab 3"
+                        },{
+                          name: "tab4",
+                          label: "Tab 4"
+                        }
+                      ]
+                    }, [
+                            "Marcus",
+                            "Maria",
+                            "João"
+                    ])
+            ])
+          ])
+        ])
+      ]
+    }
+  });
+</script>
+
+</body>
+</html>

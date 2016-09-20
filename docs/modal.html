@@ -89,9 +89,65 @@
     };
 
 
+    var lookupData = [
+      {
+        "description": "Vandervoort Avenue",
+        "name": "Limozen",
+        "href": "57d88125365a185fc0259aa2"
+      },
+      {
+        "description": "Crown Street",
+        "name": "Nurplex",
+        "href": "57d881252f28b431a3a2d43b"
+      },
+      {
+        "description": "Banner Avenue",
+        "name": "Equitax",
+        "href": "57d881254d0e3aa39c43440a"
+      },
+      {
+        "description": "Varet Street",
+        "name": "Zaphire",
+        "href": "57d88125bc03230f0ffb1340"
+      },
+      {
+        "description": "Cherry Street",
+        "name": "Xiix",
+        "href": "57d88125d2a464ec65e06e13"
+      },
+      {
+        "description": "Hanson Place",
+        "name": "Columella",
+        "href": "57d881256f43bf4c51c1669d"
+      },
+      {
+        "description": "Amherst Street",
+        "name": "Automon",
+        "href": "57d881255533ec4e695e9fe7"
+      },
+      {
+        "description": "Norman Avenue",
+        "name": "Sustenza",
+        "href": "57d881258d35fa142ab4180b"
+      },
+      {
+        "description": "Commercial Street",
+        "name": "Digitalus",
+        "href": "57d88125f84493f7986896bd"
+      },
+      {
+        "description": "Lloyd Court",
+        "name": "Applideck",
+        "href": "57d881259962ab12c16eee04"
+      }
+    ];
+    var lookupSelected = m.prop(false);
+    var searchTerm = m.prop("");
+
+
     m.mount(document.getElementById("app"), {
       view: function () {
-
+        console.log(searchTerm())
         return [m(".navigation"),
           m("main", [
             m(".masthead", [
@@ -106,15 +162,16 @@
                 m("p"),
                 m("button.slds-button.slds-button--brand", {
                   onclick: function () {
-                    mlds.modal.show(m(mlds.modal, {
+                    mlds.modal.show({
                       header: m("h2.slds-text-heading--medium", "Basic"),
-                      content: [m(mlds.form.wrapper.horizontal, mlds.form.bindsData(formDataHorizontal), formElementsHorizontal),
-
-                      ],
+                      content: m(mlds.form.wrapper.horizontal,
+                              mlds.form.bindsData(formDataHorizontal),
+                              formElementsHorizontal)
+                      ,
                       footer:  m("button.slds-button.slds-button--brand", {
                         onclick: mlds.modal.close.bind(null, "modal-test--1")
                       }, "Save")
-                    }), "modal-test--1")
+                    }, "modal-test--1")
                   }
                 }, "Open Modal"),
               ]),
@@ -123,9 +180,22 @@
                 m("h2.slds-m-bottom--medium.desc", "Header empty"),
                 m("button.slds-button.slds-button--brand", {
                   onclick: function () {
-                    mlds.modal.show(m(mlds.modal, {
-                      content: faker.lorem.paragraph()
-                    }), "modal-test--2")
+                    mlds.modal.show({
+                      content: m(mlds.lookups, {
+                        label: "Lookups Company",
+                        placeholder: "Search companies",
+                        query: searchTerm,
+                        searchOninput: m.withAttr("value", searchTerm),
+                        value: lookupSelected,
+                        filter: function (item) {
+                          return item.name.toLowerCase().indexOf(searchTerm) > -1 || item.description.toLowerCase().indexOf(searchTerm) > -1 ;
+                        },
+                        data: {
+                          list: lookupData,
+                          key: "href"
+                        }
+                      })
+                    }, "modal-test--2")
                   }
                 }, "Open Modal"),
               ]),
@@ -134,10 +204,10 @@
                 m("h2.slds-m-bottom--medium.desc", "Footer removed"),
                 m("button.slds-button.slds-button--brand", {
                   onclick: function () {
-                    mlds.modal.show(m(mlds.modal, {
+                    mlds.modal.show({
                       header: m("h2.slds-text-heading--medium", "Modal Header"),
                       content: faker.lorem.paragraph()
-                    }), "modal-test--3")
+                    }, "modal-test--3")
                   }
                 }, "Open Modal"),
               ])

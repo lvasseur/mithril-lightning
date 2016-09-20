@@ -37,7 +37,7 @@ var Lookups = {
       }, [
         m("label.slds-form-element__label[for='lookup-348']", vnode.attrs.label),
         m(".slds-form-element__control", [
-          vnode.state.selected() ?
+          vnode.attrs.value() ?
             [m(".slds-pill_container", [
               m("span.slds-pill.slds-size--1-of-1", [
                 m("span.slds-pill__label[title='Salesforce.com, Inc.']", vnode.state.selected().name),
@@ -65,6 +65,7 @@ var Lookups = {
                 placeholder: vnode.attrs.placeholder,
                 oninput: vnode.attrs.searchOninput,
                 onfocus: function (e) {
+                  console.log("focus")
                   vnode.state.isOpen(true);
                 }
               })
@@ -72,14 +73,14 @@ var Lookups = {
 
         ]),
         m(".slds-lookup__menu[id='lookup-348']", [
-          m(".slds-lookup__item--label.slds-text-body--small", "Recent Accounts"),
+          m(".slds-lookup__item--label.slds-text-body--small", vnode.attrs.label),
           m("ul.slds-lookup__list[role='listbox']", [
             vnode.state.list.filter(vnode.attrs.filter).map(function (item) {
               return m("li[role='presentation']", {
                 key: item[key],
                 onclick: function (e) {
                   vnode.state.selected(item);
-                  vnode.attrs.value(item[key]);
+                  vnode.attrs.value(item);
                   vnode.attrs.query("");
                   vnode.state.isOpen(false);
                   if (typeof vnode.attrs.callbackSelect === "function") {

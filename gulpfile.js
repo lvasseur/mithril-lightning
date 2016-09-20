@@ -31,8 +31,8 @@ gulp.task('styles', function() {
 });
 
 gulp.task('watch', function () {
-  gulp.watch(['./src/**/*.js', './entry.js', './webpack.config.js'], ['js', 'webpack']);
-  gulp.watch(['./src/**/*.html', './docs/**/*.html'], ['html', 'webpack']);
+  gulp.watch(['./src/**/*.js', './entry.js', './webpack.config.js'], ['webpack', 'js']);
+  gulp.watch(['./src/**/*.html', './docs/**/*.html'], ['webpack', 'html']);
   gulp.watch(['./docs/styles/*.css'], ['styles'])
 });
 
