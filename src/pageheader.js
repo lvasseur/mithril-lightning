@@ -2,7 +2,7 @@ var Pageheader = {};
 
 
 function objByValue(item) {
-  return item[this["field"]] === this["value"];
+  return item[this["field"]] === this["searchKey"];
 };
 
 Pageheader.home = {
@@ -51,7 +51,7 @@ Pageheader.record = {
 
   view: function (vnode) {
 
-    var headerFields = vnode.attrs.headerFields;
+    var fields = vnode.attrs.fields;
     var record = vnode.attrs.record || {};
     return [m(".slds-page-header[role='banner']", [
       m(".slds-grid", [
@@ -73,22 +73,20 @@ Pageheader.record = {
         ])
       ]),
       m("ul.slds-grid.slds-page-header__detail-row", [
-        headerFields ? Object.keys(headerFields).map(function (field) {
+        fields ? Object.keys(fields).map(function (field) {
 
-          if (typeof headerFields[field] === "object") {
-            var result = record[field].find(objByValue, headerFields[field]);
-            if (result) {
+          if (typeof fields[field] === "object") {
+
+              var callback = fields[field]["callback"] || false;
+
               return m("li.slds-page-header__detail-block", [
-                m("p.slds-text-title.slds-truncate.slds-m-bottom--xx-small", { title: headerFields[field]["name"] }, headerFields[field]["name"]),
-                m("p.slds-text-body--regular.slds-truncate", result[headerFields[field]["get"]])
+                m("p.slds-text-title.slds-truncate.slds-m-bottom--xx-small", { title: fields[field]["label"] }, fields[field]["label"]),
+                m("p.slds-text-body--regular.slds-truncate", callback ? callback(record[field]) : record[field][fields[field]["field"]])
               ])
-            } else {
-              return "Nothing"
-            }
 
           } else {
             return m("li.slds-page-header__detail-block", [
-              m("p.slds-text-title.slds-truncate.slds-m-bottom--xx-small", { title: headerFields[field] }, headerFields[field]),
+              m("p.slds-text-title.slds-truncate.slds-m-bottom--xx-small", { title: fields[field] }, fields[field]),
               m("p.slds-text-body--regular.slds-truncate", record[field])
             ])
           }

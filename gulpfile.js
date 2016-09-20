@@ -8,7 +8,7 @@ gulp.task('connect', function() {
   connect.server({
     name: 'Mithril Lightining',
     port: 8001,
-    root: ['docs', 'src', 'dist', 'node_modules/@salesforce-ux/design-system', 'node_modules/mithril', 'node_modules/faker/build/build'],
+    root: ['docs', 'src', 'dist', 'node_modules/@salesforce-ux/design-system', 'node_modules/mithril', 'node_modules/faker/build/build', 'node_modules/is_js'],
     livereload: {
       port: 35730
     }

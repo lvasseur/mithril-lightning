@@ -16,7 +16,9 @@
 <script src="mithril.js"></script>
 <script src="bundle.js"></script>
 <script src="faker.min.js"></script>
+<script src="is.min.js"></script>
 <script src="helpers.js"></script>
+<script src="validator.js"></script>
 
 <script>
   var radioItens = [
@@ -252,14 +254,14 @@
         }
       ];
 
-  var formDataHorizontal = {
+  var formDataHorizontal = m.prop({
     label1: m.prop(""),
     label2: m.prop(""),
     label3: m.prop(""),
     label4: m.prop(""),
     checkebox: m.prop(false),
     radio: m.prop("")
-  };
+  });
   var formDataStacked = {
     s_label1: m.prop(""),
     s_label2: m.prop(""),
@@ -277,8 +279,48 @@
     s_label6: m.prop(""),
   };
 
+  var validateForm = new Validator({
+    label1: function (value) {
+      if (!is.equal(value, "a")) {
+        return "Should be a"
+      }
+    },
+    label2: function (value) {
+      if (!is.equal(value, "b")) {
+        return "Should be b"
+      }
+    },
+    label3: function (value) {
+      if (is.empty(value)) {
+        return "Should not be empty"
+      }
+    },
+    label4: function (value) {
+      if (is.empty(value)) {
+        return "Should not be empty"
+      }
+    },
+    checkebox: function (value) {
+      return is.equal(value, false)
+    },
+    radio: function (value) {
+      if (is.empty(value)) {
+        return "Should not be empty"
+      }
+    }
+  });
+
+
+
+
   m.mount(document.getElementById("app"), {
+
     view: function () {
+
+
+      validateForm.validate(formDataHorizontal);
+
+      console.log(validateForm.errors)
       return m(".navigation"),
               m("main", [
                 m(".masthead", [
@@ -287,13 +329,14 @@
                 m(".content", [
                   m("section", [
                     m("h2.slds-m-bottom--medium.desc", "Horizontal"),
-                    m(mlds.form.wrapper.horizontal, mlds.form.bindsData(formDataHorizontal), formElementsHorizontal)
+                    m(mlds.form.wrapper.horizontal, mlds.form.bindsData(formDataHorizontal()), formElementsHorizontal)
                   ]),
                   m("ol", [
-                    Object.keys(formDataHorizontal).map(function (key) {
-                      return m("li", key + ": ", formDataHorizontal[key]())
+                    Object.keys(formDataHorizontal()).map(function (key) {
+                      return m("li", key + ": ", formDataHorizontal()[key]())
                     })
                   ]),
+                  m("p", validateForm.hasErrors()),
                   m("hr"),
                   m("section", [
                     m("h2.slds-m-bottom--medium.desc", "Stacked Form"),

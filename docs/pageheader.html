@@ -55,20 +55,35 @@
                 type: "Test",
                 title: "Test Title",
                 icon: mlds.icon.standard("people"),
-                headerFields: {
+                fields: {
                   "href": "ID",
-                  "name": "Nome",
-                  "another": "Another",
+                  "name": {
+                    label: "Nome",
+                    field: "test"
+                  },
+                  "another": {
+                    label: "Another",
+                    callback: function (value) {
+                      return value.toUpperCase()
+                    }
+                  },
                   "test2": {
-                    "field": "type",
-                    "value": "test1",
-                    "get": "value",
-                    "name": "Compound"
+                    label: "Compound",
+                    field: "value",
+                    callback: function (list) {
+                      var result = list.filter(function (item) {
+                        return item["type"] === "test1";
+                      });
+                      console.log(result[0])
+                      return result[0]['value']
+                    }
                   }
                 },
                 record: {
                   href: "123445",
-                  name: "Record Test",
+                  name: {
+                    test: "Recorde Test"
+                  },
                   another: "Outro campo",
                   test2: [
                     {
