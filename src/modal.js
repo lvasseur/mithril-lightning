@@ -1,5 +1,3 @@
-'use strict';
-
 var modal = {
 
   show: function (attr, id) {
@@ -11,26 +9,26 @@ var modal = {
   },
 
   close: function (id) {
-
-      var modal = document.getElementById(id);
-      if (modal) {
-        m.mount(modal, null);
-        modal.remove();
-      }
-
-  },
-
-  onremove: function (vnode) {
-    console.log("modal_remove")
+    var modal = document.getElementById(id);
+    if (modal) {
+      m.mount(modal, null);
+      modal.remove();
+    }
   },
 
   oninit: function (vnode) {
     vnode.state.instanceId = vnode.attrs.instanceId;
+    vnode.state.isOpen = m.prop(false);
   },
 
   view: function (vnode) {
     return [
-      m(".slds-modal.slds-fade-in-open[role='dialog'][tabindex='-1']", [
+      m(".slds-modal.slds-fade-in-open[role='dialog'][tabindex='-1']", {
+        onclick: function (e) {
+          if (e.target === vnode.dom)
+            vnode.state.close(vnode.state.instanceId)
+        }
+      },[
         m(".slds-modal__container", [
           m(".slds-modal__header", {
             class: vnode.attrs.header ? "" : "slds-modal__header--empty"
@@ -44,7 +42,7 @@ var modal = {
               m("span.slds-assistive-text", "Close")
             ]),
             // Header
-            typeof vnode.attrs.header === "object" ? vnode.attrs.header : vnode.attrs.header
+            vnode.attrs.header
           ]),
           // Content
           m(".slds-modal__content.slds-p-around--medium", [
