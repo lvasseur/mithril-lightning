@@ -50,17 +50,21 @@
                   m("section", [
                     m("h2.slds-m-bottom--medium.desc", "Dropdown"),
                     m(mlds.menu, {
-                      icon: mlds.icon.utility('down'),
+                      icon: mlds.icon.utility("down", {
+                        class: "slds-button__icon"
+                      }),
                       itens: itens
                     })
                   ]),
                   m("section", [
                     m("h2.slds-m-bottom--medium.desc", "Dropdown"),
                     m(mlds.menu, {
-                      icon: mlds.icon.utility('add'),
+                      icon: mlds.icon.utility('add', {
+                        class: "slds-button__icon"
+                      }),
                       itens: itens
                     })
-                  ]),
+                  ])
                 ])
               ])
     }
