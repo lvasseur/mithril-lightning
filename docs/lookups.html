@@ -74,8 +74,10 @@
   ];
 
   var searchTerm = m.prop("");
+  var searchTerm2 = m.prop("");
 
   var lookupSelected = m.prop(false);
+  var lookupSelected2 = m.prop(false);
 
   var getCat = function (id) {
     console.log("callback")
@@ -95,11 +97,9 @@
                     m(mlds.lookups, {
                       label: "Lookups Company",
                       placeholder: "Search companies",
-                      query: searchTerm,
-                      searchOninput: m.withAttr("value", searchTerm),
                       value: lookupSelected,
-                      filter: function (item) {
-                        return item.name.toLowerCase().indexOf(searchTerm) > -1 || item.description.toLowerCase().indexOf(searchTerm) > -1 ;
+                      filtr: function (item) {
+                        return item.name.toLowerCase().indexOf(this.searchTerm) > -1 || item.description.toLowerCase().indexOf(this.searchTerm) > -1 ;
                       },
                       data: {
                         list: lookupData,
@@ -109,10 +109,29 @@
                         url: "/test/new",
                         label: "New Company"
                       },
-                      callbackSelect: getCat,
+                      onselect: getCat
+                    }),
+                    m("p", lookupSelected()),
+                          m("hr"),
+                    m(mlds.lookups, {
+                      label: "Lookups Company",
+                      placeholder: "Search companies",
+                      value: lookupSelected2,
+                      filtr: function (item) {
+                        return item.name.toLowerCase().indexOf(this.searchTerm) > -1 || item.description.toLowerCase().indexOf(this.searchTerm) > -1 ;
+                      },
+                      data: {
+                        list: lookupData,
+                        key: "href"
+                      },
+                      newButton: {
+                        url: "/test/new",
+                        label: "New Company"
+                      },
+                      onselect: getCat,
                       callbackUnselect: getCat
                     }),
-                    m("p", lookupSelected())
+                    m("p", lookupSelected2())
                   ])
                 ])
               ])
