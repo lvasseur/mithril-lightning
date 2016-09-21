@@ -29,7 +29,6 @@ var onKey = (function(){
 var Lookups = {
 
   toggle: function (e) {
-    console.log(this)
     if (!e.target.isParent(this.dom)) {
       this.state.isOpen(false);
       this.state.searchTerm("");
@@ -59,7 +58,7 @@ var Lookups = {
 
     var key = vnode.attrs.data.key;
     var items = vnode.attrs.data.list;
-    console.log(vnode.state.isOpen())
+
     return [
       m(".slds-form-element.slds-lookup[data-select='single']", {
         class: vnode.state.isOpen() ? "slds-is-open" : ""

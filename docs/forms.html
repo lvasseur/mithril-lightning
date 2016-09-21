@@ -19,6 +19,7 @@
 <script src="is.min.js"></script>
 <script src="helpers.js"></script>
 <script src="validator.js"></script>
+<script src="vanilla-masker.min.js"></script>
 
 <script>
   var radioItens = [
@@ -45,6 +46,9 @@
       input: {
         placeholder: "Placeholder Label1",
         name: "label1",
+        oncreate: function (vnode) {
+          VMasker(vnode.dom).maskPattern("(99) 9999-9999")
+        }
       }
     }),
     mlds.form.input({
