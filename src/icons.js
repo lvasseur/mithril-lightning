@@ -31,7 +31,7 @@ var icon = {
       class: attrs.container || "slds-icon_container"
     }, [
       m("svg", {
-        class: attrs.class ? attrs.class : "slds-icon slds-icon-text-default " + this.getSize(size || "small")
+        class: attrs.class ? attrs.class + " " + this.getSize(size || "small"): "slds-icon slds-icon-text-default " + this.getSize(size || "small")
       }, [
         m("use[xlink:href='/assets/icons/utility-sprite/svg/symbols.svg#" + icon + "']")
       ])
