@@ -11,19 +11,31 @@ var Menu = {
   },
 
   menuSwitch: function (e) {
-    switch (this.isOpen()) {
-      case true:
-        this.isOpen(false);
-        break;
-      case false:
-        this.isOpen(true);
-        break;
+    if (this.isOpen()) this.isOpen(false)
+      this.isOpen(true)
+  },
+
+  close: function (e) {
+
+    if (!e.target.isParent(this.dom)) {
+      console.log("out");
+      this.state.isOpen(false);
+      m.redraw()
     }
+
   },
 
   oninit: function(vnode) {
     this.isOpen = m.prop(false);
     this.itens = vnode.attrs.itens
+  },
+
+  oncreate: function (vnode) {
+    document.body.addEventListener("click", vnode.state.close.bind(vnode))
+  },
+
+  onremove: function (vnode) {
+    document.body.addEventListener("click", vnode.state.close.bind(vnode))
   },
 
   view: function (vnode) {
@@ -43,7 +55,11 @@ var Menu = {
           this.itens.map(function (item) {
             return m("li.slds-dropdown__item", [
               m("a[role='menuitem']", {
-                href: item.href
+                href: item.href,
+                oncreate: m.route.link,
+                onclick: function () {
+                  vnode.state.isOpen(false);
+                }
               }, [
                 m("p.slds-truncate", item.label)
               ])
