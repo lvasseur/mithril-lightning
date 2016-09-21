@@ -63,7 +63,9 @@ form.radio = function (attrs) {
 
 form.radioGroup = function (attrs) {
   return m("fieldset.slds-form-element", [
-    m("legend.slds-form-element__legend.slds-form-element__label", attrs.label),
+    m("legend.slds-form-element__legend.slds-form-element__label",
+      attrs.required ? m("abbr.slds-required[title='required']", "*") : null
+      ,attrs.label),
     m(".slds-form-element__control", [
       m(".slds-radio--button-group", [
         attrs.itens.map(function (radio) {
