@@ -14,7 +14,7 @@ var icon = {
     var attrs = typeof size === "object" ? size : attrs || {};
     var size = typeof size === "object" ? null : size || "";
     return m("span.slds-icon_container", {
-      class: "slds-icon-standard-" + icon
+      class: "slds-icon-standard-" + icon.replace(/[_]+/g, "-")
     }, [
       m("svg.slds-icon[aria-hidden='true']", {
         class: this.getSize(size)
@@ -43,7 +43,7 @@ var icon = {
     var size = typeof size === "object" ? null : size || "";
     var cls = attrs.container || "slds-icon_container";
     return m("span", {
-      class: cls + " " + "slds-icon_container--circle slds-icon-action-" + icon.replace("_", "-")
+      class: cls + " " + "slds-icon_container--circle slds-icon-action-" + icon.replace(/[_]+/g, "-")
     }, [
       m("svg.slds-icon[aria-hidden='true']", {
         class: this.getSize(attrs.size || "small")

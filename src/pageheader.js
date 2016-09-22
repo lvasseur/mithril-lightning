@@ -92,7 +92,8 @@ Pageheader.record = {
           }
         })
         : ""
-      ])
+      ]),
+      vnode.children
     ])]
   }
 

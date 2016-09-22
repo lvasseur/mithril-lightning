@@ -13,6 +13,7 @@ lookups = require("./src/lookups.js");
 mlds.lookups = lookups['lookups'];
 mlds.onKey =lookups['onKey'];
 mlds.tabs = require("./src/tabs.js");
+mlds.wizard = require("./src/wizard.js");
 
 
 module.exports = mlds;
