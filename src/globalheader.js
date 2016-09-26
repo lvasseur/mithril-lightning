@@ -3,9 +3,7 @@ var globalheader = {
     return [m("header.slds-global-header_container", [
       m(".slds-global-header.slds-grid.slds-grid--align-spread", [
         m(".slds-global-header__item", [
-          m(".slds-global-header__logo", {
-            style: "width: 90px"
-          },[
+          m(".slds-global-header__logo.global-header__logo", [
             m("img", {
               src: vnode.attrs.logo
             })
