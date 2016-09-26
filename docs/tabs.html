@@ -42,28 +42,25 @@
           m(".content", [
             m("section", [
               m("h2.slds-m-bottom--medium.desc", "Default"),
-                    m(mlds.tabs, {
-                      items: [
-                        {
-                          name: "tab1",
-                          label: "Tab 1"
-                        },
-                        {
-                          name: "tab2",
-                          label: "Tab 2"
-                        },
-                        {
-                          name: "tab3",
-                          label: "Tab 3"
-                        },{
-                          name: "tab4",
-                          label: "Tab 4"
-                        }
-                      ]
-                    }, [
-                            "Marcus",
-                            "Maria",
-                            "João"
+                    m(mlds.tabs, [
+                      {
+                        name: "tab1",
+                        label: "Tab 1",
+                        content: "Marcus"
+                      },
+                      {
+                        name: "tab2",
+                        label: "Tab 2",
+                        content: "Harvey"
+                      },
+                      {
+                        name: "tab3",
+                        label: "Tab 3",
+                        content: "Mike"
+                      },{
+                        name: "tab4",
+                        label: "Tab 4"
+                      }
                     ])
             ])
           ])
