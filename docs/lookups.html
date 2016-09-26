@@ -79,9 +79,10 @@
   var lookupSelected = m.prop(false);
   var lookupSelected2 = m.prop(false);
 
-  var getCat = function (id) {
-    console.log("callback")
-    console.log(this.value())
+  var getCat = function (selected) {
+    console.log("callback");
+    console.log(selected);
+    return selected["href"]
   };
 
   m.mount(document.getElementById("app"), {
@@ -98,11 +99,9 @@
                       label: "Lookups Company",
                       placeholder: "Search companies",
                       value: lookupSelected,
-                      filtr: function (item) {
-                        return item.name.toLowerCase().indexOf(this.searchTerm) > -1 || item.description.toLowerCase().indexOf(this.searchTerm) > -1 ;
-                      },
+                      errorMsg: "No companies found",
                       data: {
-                        list: lookupData,
+                        list: undefined,
                         key: "href"
                       },
                       newButton: {
