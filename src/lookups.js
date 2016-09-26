@@ -36,11 +36,13 @@ var Lookups = {
    */
   toggle: function (e) {
     if (e.target.isParent(this.dom)) {
-      e.target.redraw = false;
+      e.redraw = false;
+    } else if (!this.state.isOpen()) {
+      e.redraw = false;
     } else {
       this.state.isOpen(false);
       this.state.searchTerm("");
-      m.redraw()
+      m.redraw();
     }
   },
 
@@ -69,6 +71,8 @@ var Lookups = {
       return item.name.toLowerCase().indexOf(this.searchTerm().toLowerCase()) > -1 || item.description.toLowerCase().indexOf(this.searchTerm().toLowerCase()) > -1;
     };
 
+    vnode.state.data = vnode.attrs.data.list;
+
   },
 
   oncreate: function (vnode) {
@@ -82,14 +86,15 @@ var Lookups = {
   view: function (vnode) {
 
     var key = vnode.attrs.data.key;
-    var items = vnode.attrs.data.list;
-
+    var items = typeof vnode.state.data === "function" ? vnode.state.data() : vnode.state.data;
+    console.log(items)
+    return
     return [
       m(".slds-form-element.slds-lookup[data-select='single']", {
         class: vnode.state.isOpen() ? "slds-is-open" : ""
       }, [
         m("label.slds-form-element__label[for='lookup-348']", vnode.attrs.label),
-        items ? m(".slds-form-element__control", [
+        m(".slds-form-element__control", [
           vnode.attrs.value() ?
             [
               m(".slds-pill_container", [
@@ -131,52 +136,42 @@ var Lookups = {
               }
             })
           ])
-        ]) :
-          m(".slds-form-element__control", [
-            m(".slds-input-has-icon.slds-input-has-icon--right", [
-            m("svg.slds-input__icon", [
-              m("use[xlink:href='/assets/icons/utility-sprite/svg/symbols.svg#search']")
-            ]),
-            m("input.slds-lookup__search-input.slds-input", {
-              disabled: true,
-              placeholder: vnode.attrs.errorMsg || "Nothing found"
-            })
-          ])
         ]),
         items ? m(".slds-lookup__menu", [
-            m(".slds-lookup__item--label.slds-text-body--small", vnode.attrs.label),
-            m("ul.slds-lookup__list", [
-              items.filter(vnode.attrs.filtr || vnode.state.filtr, vnode.state).map(function (item) {
-                return m("li[role='presentation']", {
-                  key: item[key],
-                  onclick: vnode.state.onselect.bind(vnode, item)
-                }, [
-                  m("span.slds-lookup__item-action.slds-media.slds-media--center", [
-                    vnode.attrs.icon,
-                    m(".slds-media__body", [
-                      m(".slds-lookup__result-text", item.name),
-                      m("span.slds-lookup__result-meta.slds-text-body--small", item.description)
-                    ])
+          m(".slds-lookup__item--label.slds-text-body--small", vnode.attrs.label),
+          m("ul.slds-lookup__list", [
+            items.filter(vnode.attrs.filtr || vnode.state.filtr, vnode.state).map(function (item) {
+              return m("li[role='presentation']", {
+                key: item[key],
+                onclick: vnode.state.onselect.bind(vnode, item)
+              }, [
+                m("span.slds-lookup__item-action.slds-media.slds-media--center", [
+                  vnode.attrs.icon,
+                  m(".slds-media__body", [
+                    m(".slds-lookup__result-text", item.name),
+                    m("span.slds-lookup__result-meta.slds-text-body--small", item.description)
                   ])
                 ])
-              }),
-              m("li[role='presentation']", [
-                vnode.attrs.newButton ? m("a", {
-                  href: vnode.attrs.newButton.url,
-                  oncreate: m.route.link
-                }, [
-                  m("span.slds-lookup__item-action.slds-lookup__item-action--label]", [
-                    m("svg.slds-icon.slds-icon--x-small.slds-icon-text-default[aria-hidden='true']", [
-                      m("use[xlink:href='/assets/icons/utility-sprite/svg/symbols.svg#add']")
-                    ]),
-                    m("span.slds-truncate", vnode.attrs.newButton.label)
-                  ])
-                ]) : null
               ])
+            }),
+            m("li[role='presentation']", [
+              vnode.attrs.newButton ? m("a", {
+                href: vnode.attrs.newButton.url,
+                oncreate: m.route.link
+              }, [
+                m("span.slds-lookup__item-action.slds-lookup__item-action--label]", [
+                  m("svg.slds-icon.slds-icon--x-small.slds-icon-text-default[aria-hidden='true']", [
+                    m("use[xlink:href='/assets/icons/utility-sprite/svg/symbols.svg#add']")
+                  ]),
+                  m("span.slds-truncate", vnode.attrs.newButton.label)
+                ])
+              ]) : null
             ])
-          ]) : null
+          ])
+        ]) : null
       ])
     ]
+
   }
 
 };

@@ -85,8 +85,31 @@
     return selected["href"]
   };
 
+
+
   m.mount(document.getElementById("app"), {
-    view: function () {
+
+    oninit: function (vnode) {
+
+      vnode.state.getUsers = m.request({
+        method: "GET",
+        url: "https://jsonplaceholder.typicode.com/users"
+      });
+
+      vnode.state.users = vnode.state.getUsers.run(function (users) {
+        return users.map(function (user) {
+          return {
+            name: user.name,
+            description: "email: " + user.email,
+            id: user.id
+          }
+        })
+      });
+
+    },
+
+    view: function (vnode) {
+
       return m(".navigation"),
               m("main", [
                 m(".masthead", [
@@ -101,14 +124,16 @@
                       value: lookupSelected,
                       errorMsg: "No companies found",
                       data: {
-                        list: undefined,
-                        key: "href"
+                        list: vnode.state.users,
+                        key: "id"
                       },
                       newButton: {
                         url: "/test/new",
-                        label: "New Company"
+                        label: "New User"
                       },
-                      onselect: getCat
+                      onselect: function (user) {
+                        return user["name"]
+                      }
                     }),
                     m("p", lookupSelected()),
                           m("hr"),
@@ -116,9 +141,6 @@
                       label: "Lookups Company",
                       placeholder: "Search companies",
                       value: lookupSelected2,
-                      filtr: function (item) {
-                        return item.name.toLowerCase().indexOf(this.searchTerm) > -1 || item.description.toLowerCase().indexOf(this.searchTerm) > -1 ;
-                      },
                       data: {
                         list: lookupData,
                         key: "href"
