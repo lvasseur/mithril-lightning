@@ -21,7 +21,7 @@ var tabs = {
             return m("li.slds-tabs--default__item.slds-text-title--caps[role='presentation'][title='Item One']",{
               class: vnode.state.selectedTab() === i ? "slds-active" : ""
             } ,[
-              m("a.slds-tabs--default__link[href='#'][role='tab']", {
+              m("a.slds-tabs--default__link[href='javascript:void(0);'][role='tab']", {
                 tabindex: vnode.state.selectedTab() === i ? 0 : -1,
                 id: tab["name"] + "__item",
                 onclick: vnode.state.changeTab.bind(null, i)
