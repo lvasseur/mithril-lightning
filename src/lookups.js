@@ -87,8 +87,6 @@ var Lookups = {
 
     var key = vnode.attrs.data.key;
     var items = typeof vnode.state.data === "function" ? vnode.state.data() : vnode.state.data;
-    console.log(items)
-    return
     return [
       m(".slds-form-element.slds-lookup[data-select='single']", {
         class: vnode.state.isOpen() ? "slds-is-open" : ""
