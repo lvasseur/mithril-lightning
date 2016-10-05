@@ -1,20 +1,14 @@
-var gulp = require('gulp');
-var gutil = require("gulp-util");
-var connect = require('gulp-connect');
-var webpack = require('webpack-stream');
-var webpackConfig = require("./webpack.config.js");
+const gulp = require("gulp");
+const connect = require("gulp-connect");
 
-gulp.task('connect', function() {
+gulp.task("connect", function() {
   connect.server({
-    name: 'Mithril Lightining',
+    name: "Mithril Lightining",
     port: 8001,
     root: [
-      'docs', 'src', 'dist',
-      'node_modules/@salesforce-ux/design-system',
-      'node_modules/mithril',
-      'node_modules/faker/build/build',
-      'node_modules/is_js',
-      'node_modules/vanilla-masker/build'
+      "dist", "docs",
+      "node_modules/@salesforce-ux/design-system",
+      "node_modules/mithril",
     ],
     livereload: {
       port: 35730
@@ -22,36 +16,21 @@ gulp.task('connect', function() {
   });
 });
 
-gulp.task('js', function () {
-  gulp.src(['./src/**/*.js', './entry.js', './webpack.config.js'])
+gulp.task("js", () => {
+  gulp.src(["./dist/**/*.js"])
     .pipe(connect.reload())
 });
 
-gulp.task('html', function () {
-  gulp.src(['./src/**/*.html', './docs/**/*.html'])
+gulp.task("html", () => {
+  gulp.src(["./docs/**/*.html"])
     .pipe(connect.reload())
 });
 
-gulp.task('styles', function() {
-  gulp.src(['./docs/styles/*.css'])
-    .pipe(connect.reload())
+gulp.task("watch", () => {
+  gulp.watch(["./dist/**/*.js", "./src/lightning.es6", "./webpack.config.js"], ["js"]);
+  gulp.watch(["./docs/**/*.html"], ["webpack", "html"]);
 });
 
-gulp.task('watch', function () {
-  gulp.watch(['./src/**/*.js', './entry.js', './webpack.config.js'], ['webpack', 'js']);
-  gulp.watch(['./src/**/*.html', './docs/**/*.html'], ['webpack', 'html']);
-  gulp.watch(['./docs/styles/*.css'], ['styles'])
-});
+gulp.task("default", ["connect", "watch"]);
 
-gulp.task('webpack', function () {
-  console.log(webpackConfig);
-  return gulp.src('src/entry.js')
-    .pipe(webpack(webpackConfig))
-    .pipe(gulp.dest('dist/'));
-});
 
-gulp.task('default', function() {
-
-});
-
-gulp.task('default', ['connect', 'watch']);

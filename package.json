@@ -2,12 +2,11 @@
   "name": "mithril-lightning",
   "version": "0.0.1",
   "description": "Mithril components for Lightining Design System.",
-  "main": "gulpfile.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "build": "webpack"
+    "build": "gulp default"
   },
   "repository": {
     "type": "git",
@@ -23,16 +22,18 @@
   },
   "homepage": "https://github.com/mfeitoza/mithril-lightning#readme",
   "dependencies": {
-    "@salesforce-ux/design-system": "^2.1.2",
+    "@salesforce-ux/design-system": "^2.1.3",
     "mithril": "github:lhorie/mithril.js#rewrite"
   },
   "devDependencies": {
-    "faker": "^3.1.0",
-    "gulp": "*",
+    "babel-core": "*",
+    "babel-loader": "*",
+    "babel-plugin-transform-react-jsx": "^6.8.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
     "gulp-connect": "^5.0.0",
+    "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.7",
-    "is_js": "^0.9.0",
-    "vanilla-masker": "^1.0.9",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.15.1",
     "webpack-stream": "^3.2.0"
