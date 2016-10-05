@@ -30,6 +30,25 @@
       ])
     ])];
 
+  var itens = [
+    {
+      href: "/test",
+      label: faker.lorem.word()
+    },
+    {
+      href: "/test",
+      label: faker.lorem.word()
+    },
+    {
+      href: "/test",
+      label: faker.lorem.word()
+    },
+    {
+      href: "/test",
+      label: faker.lorem.word()
+    }
+  ];
+
   m.mount(document.getElementById("app"), {
     view: function () {
       return [m(".navigation"),
@@ -47,7 +66,13 @@
                 submodule: "Test Sub",
                 icon: mlds.icon.standard("case"),
                 desc: "Simple desc",
-                actionsOne: lvlOne
+                actionsOne: lvlOne,
+                menu: m(mlds.menu, {
+                  icon: mlds.icon.utility("down", {
+                    class: "slds-button__icon"
+                  }),
+                  itens: itens
+                })
               }),
               m("hr"),
               m("h2.slds-m-bottom--medium.desc", "Record Home"),

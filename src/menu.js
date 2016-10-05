@@ -17,8 +17,9 @@ var Menu = {
 
   close: function (e) {
 
-    if (!e.target.isParent(this.dom)) {
-      console.log("out");
+    if (e.target.isParent(this.dom) || !this.state.isOpen()) {
+      e.redraw = false;
+    } else {
       this.state.isOpen(false);
       m.redraw()
     }
@@ -26,25 +27,26 @@ var Menu = {
   },
 
   oninit: function(vnode) {
-    this.isOpen = m.prop(false);
-    this.itens = vnode.attrs.itens
+    vnode.state.isOpen = m.prop(false);
+    vnode.state.items = vnode.attrs.items;
+    vnode.state.onclose = vnode.state.close.bind(vnode);
+    vnode.state.attrs = {};
+    vnode.state.attrs[vnode.attrs.event || "onclick"] = vnode.state.menuSwitch.bind(vnode.state);
   },
 
   oncreate: function (vnode) {
-    document.body.addEventListener("click", vnode.state.close.bind(vnode))
+    document.body.addEventListener("click", vnode.state.onclose)
   },
 
   onremove: function (vnode) {
-    document.body.addEventListener("click", vnode.state.close.bind(vnode))
+    document.body.addEventListener("click", vnode.state.onclose)
   },
 
   view: function (vnode) {
     return m(".slds-dropdown-trigger.slds-dropdown-trigger--click",{
       class: this.isOpen() ? "slds-is-open" : ""
     }, [
-      m("button.slds-button.slds-button--icon-border-filled[aria-haspopup='true']", {
-        onclick: this.menuSwitch.bind(this)
-      }, [
+      m("button.slds-button.slds-button--icon-border-filled[aria-haspopup='true']", vnode.state.attrs, [
         vnode.attrs.icon,
         m("span.slds-assistive-text", "Show More")
       ]),
@@ -52,18 +54,24 @@ var Menu = {
         class: this.getSize(vnode.attrs.size)
       }, [
         m("ul.dropdown__list[role='menu']", [
-          this.itens.map(function (item) {
-            return m("li.slds-dropdown__item", [
-              m("a[role='menuitem']", {
-                href: item.href,
-                oncreate: m.route.link,
-                onclick: function () {
-                  vnode.state.isOpen(false);
-                }
-              }, [
-                m("p.slds-truncate", item.label)
+          vnode.state.items.map(function (item) {
+            if (item.hasOwnProperty("header") || typeof item === "string") {
+              return m("li.slds-dropdown__header[role='separator']", [
+                m("span.slds-text-title--caps", item.header || item)
               ])
-            ])
+            } else {
+              return m("li.slds-dropdown__item", [
+                m("a[role='menuitem']", {
+                  href: item.href,
+                  oncreate: m.route.link,
+                  onclick: function () {
+                    vnode.state.isOpen(false);
+                  }
+                }, [
+                  m("p.slds-truncate", item.label)
+                ])
+              ])
+            }
           })
         ])
       ])

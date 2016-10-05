@@ -22,6 +22,9 @@
 
   var itens = [
     {
+      header: "Test"
+    },
+    {
       href: "/test",
       label: faker.lorem.word()
     },
@@ -29,6 +32,7 @@
       href: "/test",
       label: faker.lorem.word()
     },
+          "test header",
     {
       href: "/test",
       label: faker.lorem.word()
@@ -50,19 +54,20 @@
                   m("section", [
                     m("h2.slds-m-bottom--medium.desc", "Dropdown"),
                     m(mlds.menu, {
-                      icon: mlds.icon.utility("down", {
+                      icon: mlds.icon.utility("down", "extraSmall", {
                         class: "slds-button__icon"
                       }),
-                      itens: itens
+                      size: "medium",
+                      items: itens
                     })
                   ]),
                   m("section", [
                     m("h2.slds-m-bottom--medium.desc", "Dropdown"),
                     m(mlds.menu, {
-                      icon: mlds.icon.utility('add', {
+                      icon: mlds.icon.utility("add", "extraSmall", {
                         class: "slds-button__icon"
                       }),
-                      itens: itens
+                      items: itens
                     })
                   ])
                 ])
