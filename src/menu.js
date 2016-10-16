@@ -46,9 +46,18 @@ var Menu = {
     return m(".slds-dropdown-trigger.slds-dropdown-trigger--click",{
       class: this.isOpen() ? "slds-is-open" : ""
     }, [
-      m("button.slds-button.slds-button--icon-border-filled[aria-haspopup='true']", vnode.state.attrs, [
+      !vnode.attrs.label ? m("button.slds-button.slds-button--icon-border-filled[aria-haspopup='true']", vnode.state.attrs, [
         vnode.attrs.icon,
         m("span.slds-assistive-text", "Show More")
+      ]) : m("button.slds-button.slds-type-focus.slds-m-right--small.slds-grid.slds-truncate[aria-haspopup='true']", vnode.state.attrs,[
+        m(".slds-grid.slds-grid--vertical-align-center.slds-truncate", [
+          m("h1.slds-page-header__title.slds-truncate", {
+            title: vnode.attrs.label
+          }, vnode.attrs.label),
+          m("svg.slds-button__icon.slds-button__icon--right.slds-no-flex[aria-hidden='true']", [
+            m("use[xlink:href='/assets/icons/utility-sprite/svg/symbols.svg#down']")
+          ])
+        ])
       ]),
       m(".slds-dropdown.slds-dropdown--left", {
         class: this.getSize(vnode.attrs.size)
@@ -62,10 +71,11 @@ var Menu = {
             } else {
               return m("li.slds-dropdown__item", [
                 m("a[role='menuitem']", {
-                  href: item.href,
-                  oncreate: m.route.link,
+                  href: item.href || "javascript:void(0);",
+                  oncreate: item.href ? m.route.link : null,
                   onclick: function () {
                     vnode.state.isOpen(false);
+                    if (item.hasOwnProperty("onclick")) item.onclick();
                   }
                 }, [
                   m("p.slds-truncate", item.label)

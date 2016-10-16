@@ -63,7 +63,26 @@
               m("h2.slds-m-bottom--medium.desc", "Object Home"),
               m(mlds.pageheader.home, {
                 module: "Test",
-                submodule: "Test Sub",
+                submodule: m(mlds.menu, {
+                  label: "Teste",
+                  icon: mlds.icon.utility("down", "extraSmall", {
+                    class: "slds-button__icon"
+                  }),
+                  size: "medium",
+                  items: [
+                    {
+                      header: "Test"
+                    },
+                    {
+                      href: "/test",
+                      label: "ABC"
+                    },
+                    {
+                      href: "/test",
+                      label: "XYZ"
+                    }
+                  ]
+                }),
                 icon: mlds.icon.standard("case"),
                 desc: "Simple desc",
                 actionsOne: lvlOne,

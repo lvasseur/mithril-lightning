@@ -17,14 +17,7 @@ Pageheader.home = {
             ]),
             m(".slds-media__body", [
               m("p.slds-text-title--caps.slds-line-height--reset", vnode.attrs.module),
-              m("button.slds-button.slds-type-focus.slds-m-right--small.slds-grid.slds-truncate[aria-haspopup='true']", [
-                m(".slds-grid.slds-grid--vertical-align-center.slds-truncate", [
-                  m("h1.slds-page-header__title.slds-truncate", { title: vnode.attrs.submodule}, vnode.attrs.submodule),
-                  m("svg.slds-button__icon.slds-button__icon--right.slds-no-flex[aria-hidden='true']", [
-                    m("use[xlink:href='/assets/icons/utility-sprite/svg/symbols.svg#down']")
-                  ])
-                ])
-              ])
+              vnode.attrs.submodule
             ])
           ])
         ]),
