@@ -7,7 +7,6 @@ const PATHS = {
 };
 
 module.exports = {
-  devtool: "eval",
   entry: {
     bundle: PATHS.src + "/lightning.js", // bundle all Mithril Lightning components
     // individual entries Mithril Lightning components
@@ -39,7 +38,7 @@ module.exports = {
               "pragma": "m"
             }]
           ],
-          sourceMaps: true
+          sourceMaps: "inline"
         }
       },
       {
