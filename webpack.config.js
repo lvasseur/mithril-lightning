@@ -7,9 +7,11 @@ const PATHS = {
 };
 
 module.exports = {
+  devtool: "eval",
   entry: {
-    bundle: PATHS.src + "/lightning.es6", // bundle all Mithril Lightning components
+    bundle: PATHS.src + "/lightning.js", // bundle all Mithril Lightning components
     // individual entries Mithril Lightning components
+    datatable: PATHS.src + "/datatable/index.js"
   },
   output: {
     path: PATHS.dist,
@@ -17,7 +19,9 @@ module.exports = {
     chunkFilename: "[id].js",
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    root: path.resolve(PATHS.src),
+    extensions: ['', '.js', '.jsx'],
+    moduleDirectories: ['node_modules']
   },
   watch: true,
   module: {
@@ -37,6 +41,11 @@ module.exports = {
           ],
           sourceMaps: true
         }
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "babel-loader"
       }
     ]
   }
