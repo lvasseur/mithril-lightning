@@ -6,10 +6,21 @@
 
   <link rel="stylesheet" href="assets/styles/salesforce-lightning-design-system.min.css">
 
+
 </head>
 <body>
 
-<div id="datatable"></div>
+  <div class="ml-container slds-p-top--large slds-p-horizontal--medium">
+    <h1 class="slds-text-heading--large">Data Table</h1>
+    <hr class="slds-m-top--small slds-m-bottom--small">
+  </div>
+
+  <div id="datatable"></div>
+
+
+
+
+
 
 <script src="mithril.min.js"></script>
 <script src="datatable.js"></script>
@@ -61,13 +72,12 @@
     },
 
     view: function (vnode) {
-      return m("div", [
-        m("h1.slds-text-heading--large", "Data Table"),
+      return m("div.slds-p-horizontal--x-large", [
         m(datatable.component, {
           data: data,
           sort: {
-            col: "",
-            order: ""
+            col: "points",
+            order: "desc"
           },
           link: {
             key: "id",
@@ -80,7 +90,8 @@
               sortable: true
             },
             description: {
-              label: "Description"
+              label: "Description",
+              sortable: true
             },
             points: {
               label: "Points",

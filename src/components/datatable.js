@@ -51,7 +51,6 @@ export const component = {
   },
 
   sortTable(list, sort) {
-    console.log(sort);
     switch (sort.order) {
       case "asc":
         list.sort(function (a, b) {
@@ -83,12 +82,7 @@ export const component = {
 
     vnode.state.handleSort = function (e) {
       var prop = e.target.getAttribute("data-sort-by");
-
-      if (vnode.state.sort.col != prop) {
-        vnode.state.sort.order = "desc";
-      } else {
-        vnode.state.sort.order = vnode.state.sort.order === "asc" ? "desc" : "asc";
-      }
+      vnode.state.sort.order = vnode.state.sort.col !== prop ? "desc" : vnode.state.sort.order === "asc" ? "desc" : "asc";
       vnode.state.sort.col = prop;
       if (vnode.state.cols.indexOf(prop) === -1) {
         e.redraw = false;
@@ -107,8 +101,6 @@ export const component = {
     var data = typeof vnode.attrs.data === "function" ? vnode.attrs.data() : vnode.attrs.data;
     var colsKeys = vnode.state.cols;
     var cols = vnode.attrs.cols;
-    var hovered = vnode.attrs.hovered === undefined ? true : vnode.attrs.hovered;
-    var tableClass = "";
 
     if (data && vnode.state.sort) {
       vnode.state.sortTable(data, vnode.state.sort)
@@ -123,35 +115,7 @@ export const component = {
       }, [
         m("thead", [
           m("tr.slds-text-title--caps",
-            colsKeys.map(col => {
-              if (cols[col]["sortable"]) {
-                var thClass = "";
-                thClass += "slds-is-sorted--" + vnode.state.sort.order;
-                thClass += col === vnode.state.sort.col ? " slds-is-sorted" : "";
-                return m("th.slds-is-sortable.slds-is-resizable", {
-                  className: thClass
-                }, [
-                  m("a.slds-th__action.slds-text-link--reset[href='javascript:void(0);']", {
-                    "data-sort-by": cols[col]["sortable"] ? col : ""
-                  }, [
-                    m("span.slds-assistive-text", "Sort "),
-                    m("span.slds-truncate[title='Account Name']", cols[col]["label"]),
-                    m(".slds-icon_container", [
-                      m("svg.slds-icon.slds-icon--x-small.slds-icon-text-default.slds-is-sortable__icon[aria-hidden='true']", [
-                        m("use[xlink:href='/assets/icons/utility-sprite/svg/symbols.svg#arrowdown']")
-                      ])
-                    ])
-                  ])
-                ])
-              } else {
-                return m("th[scope='col']", [
-                  m(".slds-truncate", {
-                    title: cols[col]["label"],
-                    "data-sort-by": cols[col]["sortable"] ? col : ""
-                  }, cols[col]["label"])
-                ])
-              }
-            })
+            colsKeys.map(vnode.state.tableHeader, vnode)
           )
         ]),
         m("tbody", [
@@ -177,7 +141,37 @@ export const component = {
     }
   },
 
-  tableHeader() {
+  tableHeader(col) {
+    var cols = this.attrs.cols;
+    if (cols[col]["sortable"]) {
+      var thClass = "";
+      thClass += "slds-is-sorted--" + this.state.sort.order;
+      thClass += col === this.state.sort.col ? " slds-is-sorted" : "";
+      return m("th.slds-is-sortable.slds-is-resizable", {
+        className: thClass
+      }, [
+        m("a.slds-th__action.slds-text-link--reset[href='javascript:void(0);']", {
+          "data-sort-by": cols[col]["sortable"] ? col : ""
+        }, [
+          m("span.slds-assistive-text", "Sort "),
+          m("span.slds-truncate", {
+            "data-sort-by": cols[col]["sortable"] ? col : ""
+          }, cols[col]["label"]),
+          m(".slds-icon_container", [
+            m("svg.slds-icon.slds-icon--x-small.slds-icon-text-default.slds-is-sortable__icon[aria-hidden='true']", [
+              m("use[xlink:href='/assets/icons/utility-sprite/svg/symbols.svg#arrowdown']")
+            ])
+          ])
+        ])
+      ])
+    } else {
+      return m("th[scope='col']", [
+        m(".slds-truncate", {
+          title: cols[col]["label"],
+          "data-sort-by": cols[col]["sortable"] ? col : ""
+        }, cols[col]["label"])
+      ])
+    }
   }
 
 };
