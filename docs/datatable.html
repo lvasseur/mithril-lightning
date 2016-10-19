@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MLDS - Data Table</title>
+
+  <link rel="stylesheet" href="assets/styles/salesforce-lightning-design-system.min.css">
+
+</head>
+<body>
+
+<div id="datatable"></div>
+
+<script src="mithril.min.js"></script>
+<script src="datatable.js"></script>
+<script>
+
+  var data = m.prop([
+    {
+      "points": 330,
+      "description": "Stillwell Place",
+      "name": "Earwax",
+      "id": "8c04baf9-00d4-400b-949a-f9a908527539"
+    },
+    {
+      "points": 925,
+      "description": "Jackson Court",
+      "name": "Zosis",
+      "id": "86154f58-04ee-49ed-b407-fe541498f0bb"
+    },
+    {
+      "points": 306,
+      "description": "Kathleen Court",
+      "name": "Sureplex",
+      "id": "215a3302-0add-40a6-8bc5-04884fbd74bb"
+    },
+    {
+      "points": 365,
+      "description": "Java Street",
+      "name": "Codact",
+      "id": "8b0133ec-d01d-4111-8ac8-901f832dbb5c"
+    },
+    {
+      "points": 661,
+      "description": "Gallatin Place",
+      "name": "Nitracyr",
+      "id": "dd158aaa-7743-4ca2-a070-02c21319fac0"
+    }
+  ]);
+
+  var datatableDemo = {
+
+    oninit: function (vnode) {
+
+      vnode.state.data = m.prop();
+
+      var fakeRequest = setTimeout(function () {
+        vnode.state.data(data());
+      }, 2000);
+
+    },
+
+    view: function (vnode) {
+      return m("div", [
+        m("h1.slds-text-heading--large", "Data Table"),
+        m(datatable.component, {
+          data: data,
+          sort: {
+            col: "",
+            order: ""
+          },
+          link: {
+            key: "id",
+            col: "name",
+            href: "/teste/"
+          },
+          cols: {
+            name: {
+              label: "Name",
+              sortable: true
+            },
+            description: {
+              label: "Description"
+            },
+            points: {
+              label: "Points",
+              sortable: true,
+              format: function (value) {
+                return m("span.slds-badge", value)
+              }
+            }
+          }
+        })
+      ])
+    }
+  };
+
+  m.mount(document.getElementById("datatable"), datatableDemo)
+
+
+</script>
+</body>
+</html>
