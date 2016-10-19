@@ -1,3 +1,49 @@
+/**
+ * @typedef {object} datatableAttrs
+ * @property {list} - Data to be displayed.
+ * @type {sortState} sort - Sorting state object.
+ * @type {recordLink} link - Object property to use as key and record href.
+ * @type {{col: colsObject}} cols - Object contains the columns to be displayed.
+ *
+ */
+
+/**
+ *
+ * @typedef {object} sortState
+ * @property {string} col - column key.
+ * @property {string} order - asc or desc.
+ */
+
+/**
+ *
+ * @typedef {object} recordLink
+ * @property {string} key - record unique identifier.
+ * @property {string} col - column key to be record link.
+ * @property {string} href - base href for record.
+ *
+ */
+
+/**
+ *
+ * @typedef {object} colsObject
+ * @property {string} label - record unique identifier.
+ * @type {formatCallback} format
+ * @property {boolean} sortable.
+ */
+
+/**
+ * This callback is used to format or add extra style to cell value.
+ * @callback formatCallback
+ * @param {string} value - the value to be formated
+ * @return {string|hyperscript}
+ */
+
+
+/**
+ * Datatable attributes.
+ *
+ * @param {datatableAttrs}
+ */
 export const component = {
 
   errorMsg(e) {
@@ -5,7 +51,7 @@ export const component = {
   },
 
   sortTable(list, sort) {
-    var first = list[0];
+    console.log(sort);
     switch (sort.order) {
       case "asc":
         list.sort(function (a, b) {
@@ -33,12 +79,17 @@ export const component = {
     vnode.state.sort = vnode.attrs.sort || {
         key: "",
         order: ""
-    };
+      };
 
     vnode.state.handleSort = function (e) {
       var prop = e.target.getAttribute("data-sort-by");
+
+      if (vnode.state.sort.col != prop) {
+        vnode.state.sort.order = "desc";
+      } else {
+        vnode.state.sort.order = vnode.state.sort.order === "asc" ? "desc" : "asc";
+      }
       vnode.state.sort.col = prop;
-      vnode.state.sort.order = vnode.state.sort.order === "asc" ? "desc" : "asc";
       if (vnode.state.cols.indexOf(prop) === -1) {
         e.redraw = false;
       }
@@ -73,12 +124,33 @@ export const component = {
         m("thead", [
           m("tr.slds-text-title--caps",
             colsKeys.map(col => {
-              return m("th[scope='col']", [
-                m(".slds-truncate", {
-                  title: cols[col]["label"],
-                  "data-sort-by": cols[col]["sortable"] ? col : ""
-                }, cols[col]["label"])
-              ])
+              if (cols[col]["sortable"]) {
+                var thClass = "";
+                thClass += "slds-is-sorted--" + vnode.state.sort.order;
+                thClass += col === vnode.state.sort.col ? " slds-is-sorted" : "";
+                return m("th.slds-is-sortable.slds-is-resizable", {
+                  className: thClass
+                }, [
+                  m("a.slds-th__action.slds-text-link--reset[href='javascript:void(0);']", {
+                    "data-sort-by": cols[col]["sortable"] ? col : ""
+                  }, [
+                    m("span.slds-assistive-text", "Sort "),
+                    m("span.slds-truncate[title='Account Name']", cols[col]["label"]),
+                    m(".slds-icon_container", [
+                      m("svg.slds-icon.slds-icon--x-small.slds-icon-text-default.slds-is-sortable__icon[aria-hidden='true']", [
+                        m("use[xlink:href='/assets/icons/utility-sprite/svg/symbols.svg#arrowdown']")
+                      ])
+                    ])
+                  ])
+                ])
+              } else {
+                return m("th[scope='col']", [
+                  m(".slds-truncate", {
+                    title: cols[col]["label"],
+                    "data-sort-by": cols[col]["sortable"] ? col : ""
+                  }, cols[col]["label"])
+                ])
+              }
             })
           )
         ]),
@@ -103,6 +175,9 @@ export const component = {
         ])
       ])
     }
+  },
+
+  tableHeader() {
   }
 
 };
