@@ -8,9 +8,11 @@ const PATHS = {
 
 module.exports = {
   cache: true,
+  bail: true,
+  target: "web",
   entry: {
     // individual entries Mithril Lightning components
-    datatable: PATHS.src + "/datatable/datatable.js"
+    datatable: PATHS.src + "/components/datatable.js"
   },
   output: {
     path: PATHS.dist,
@@ -32,10 +34,7 @@ module.exports = {
           cacheDirectory: true,
           presets: ["es2015"],
           plugins: [
-            ["transform-regenerator"],
-            ["transform-react-jsx", {
-              "pragma": "m"
-            }]
+            ["transform-regenerator"]
           ],
           sourceMaps: "inline"
         }
