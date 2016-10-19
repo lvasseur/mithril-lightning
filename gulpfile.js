@@ -20,7 +20,7 @@ gulp.task("connect", function() {
 });
 
 
-gulp.task("js", () => {
+gulp.task("js", ["webpack"], () => {
   gulp.src(["./dist/**/*.js"])
     .pipe(connect.reload())
 });
@@ -46,7 +46,7 @@ gulp.task("watch", () => {
     "./src/**/*.jsx",
     "./dist/**/*.js",
     "./webpack.config.js"
-  ], ["webpack", "js"]);
+  ], ["js"]);
   gulp.watch(["./docs/**/*.html"], ["html"]);
 });
 

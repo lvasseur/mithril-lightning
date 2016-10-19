@@ -7,22 +7,21 @@ const PATHS = {
 };
 
 module.exports = {
+  cache: true,
   entry: {
-    bundle: PATHS.src + "/lightning.js", // bundle all Mithril Lightning components
     // individual entries Mithril Lightning components
-    datatable: PATHS.src + "/datatable/index.js"
+    datatable: PATHS.src + "/datatable/datatable.js"
   },
   output: {
     path: PATHS.dist,
     filename: "[name].js",
-    chunkFilename: "[id].js",
+    library: "[name]"
   },
   resolve: {
     root: path.resolve(PATHS.src),
     extensions: ['', '.js', '.jsx'],
     moduleDirectories: ['node_modules']
   },
-  watch: true,
   module: {
     loaders: [
       {
@@ -40,11 +39,6 @@ module.exports = {
           ],
           sourceMaps: "inline"
         }
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "babel-loader"
       }
     ]
   }
