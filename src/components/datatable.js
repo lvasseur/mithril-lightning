@@ -112,13 +112,13 @@ export const component = {
       return m("table.slds-table.slds-table--bordered.slds-table--cell-buffer", {
         className: vnode.state.tableClass,
         onclick: vnode.state.handleSort
-      }, [
-        m("thead", [
+      },
+        m("thead",
           m("tr.slds-text-title--caps",
             colsKeys.map(vnode.state.tableHeader, vnode)
           )
-        ]),
-        m("tbody", [
+        ),
+        m("tbody",
           data ?
             data.map((row) => {
               return m("tr", {key: row[vnode.attrs.link.key]}, colsKeys.map((col, i) => {
@@ -136,8 +136,8 @@ export const component = {
                 })
               )
             }) : m("tr", m("td", {colspan: colsKeys.length}, "Loading data..."))
-        ])
-      ])
+        )
+      )
     }
   },
 
@@ -149,21 +149,21 @@ export const component = {
       thClass += col === this.state.sort.col ? " slds-is-sorted" : "";
       return m("th.slds-is-sortable.slds-is-resizable", {
         className: thClass
-      }, [
+      },
         m("a.slds-th__action.slds-text-link--reset[href='javascript:void(0);']", {
           "data-sort-by": cols[col]["sortable"] ? col : ""
-        }, [
+        },
           m("span.slds-assistive-text", "Sort "),
           m("span.slds-truncate", {
             "data-sort-by": cols[col]["sortable"] ? col : ""
           }, cols[col]["label"]),
-          m(".slds-icon_container", [
+          m(".slds-icon_container",
             m("svg.slds-icon.slds-icon--x-small.slds-icon-text-default.slds-is-sortable__icon[aria-hidden='true']", [
               m("use[xlink:href='/assets/icons/utility-sprite/svg/symbols.svg#arrowdown']")
             ])
-          ])
-        ])
-      ])
+          )
+        )
+      )
     } else {
       return m("th[scope='col']", [
         m(".slds-truncate", {
