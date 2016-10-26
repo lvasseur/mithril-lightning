@@ -12,7 +12,8 @@ module.exports = {
   target: "web",
   entry: {
     // individual entries Mithril Lightning components
-    datatable: PATHS.src + "/components/datatable.js"
+    datatable: PATHS.src + "/components/datatable.js",
+    modal: PATHS.src + "/components/modal.js",
   },
   output: {
     path: PATHS.dist,

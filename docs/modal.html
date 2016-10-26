@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MLDS - Modal</title>
+
+  <link rel="stylesheet" href="assets/styles/salesforce-lightning-design-system.min.css">
+
+
+</head>
+<body>
+
+<div class="ml-container slds-p-top--large slds-p-horizontal--medium">
+  <h1 class="slds-text-heading--large">Modal</h1>
+  <hr class="slds-m-top--small slds-m-bottom--small">
+</div>
+
+<div id="modal"></div>
+
+<script src="mithril.min.js"></script>
+<script src="modal.js"></script>
+<script>
+
+  m.mount(document.getElementById("modal"), {
+
+    oninit: function (vnode) {
+      vnode.state.modalOne = m.prop(false);
+    },
+
+    view: function (vnode) {
+      return m("div.slds-p-around--large",
+              m("button", {
+                onclick: function () {
+                  vnode.state.modalOne(true)
+                }
+              }, "Modal 1"),
+              m(modal.default, {
+                id: "one",
+                isOpen: vnode.state.modalOne,
+                header: "Modal One"
+              }, m("p", "Content"))
+      )
+    }
+  })
+  
+</script>
+</body>
+</html>
