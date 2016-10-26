@@ -44,7 +44,7 @@
  *
  * @param {datatableAttrs}
  */
-export const component = {
+export default {
 
   errorMsg(e) {
     return e ? m(".error", e) : null
