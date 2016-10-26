@@ -2,7 +2,7 @@
  * Created by mfeitoza on 10/25/16.
  */
 
-import {onKey} from "./helpers.js";
+import {onKey} from "../helpers.js";
 
 
 export default {
@@ -19,7 +19,7 @@ export default {
   },
 
   view(vnode) {
-    console.log("redraw")
+
     vnode.state.isOpen = vnode.attrs.isOpen;
 
     return m("div", { id: "modal-" + vnode.attrs.id },
