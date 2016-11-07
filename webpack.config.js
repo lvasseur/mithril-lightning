@@ -14,7 +14,8 @@ module.exports = {
     // individual entries Mithril Lightning components
     datatable: PATHS.src + "/components/datatable.js",
     modal: PATHS.src + "/components/modal.js",
-    icon: PATHS.src + "/components/icons.js",
+    icons: PATHS.src + "/components/icons.js",
+    forms: PATHS.src + "/components/forms/forms.js",
   },
   output: {
     path: PATHS.dist,
