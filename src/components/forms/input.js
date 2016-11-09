@@ -4,7 +4,7 @@ export default {
 
   view(vnode) {
 
-    let attrs = vnode.attrs.attrs;
+    let attrs = vnode.attrs.attrs || {};
 
     return m(".slds-form-element", {
       className: vnode.attrs.error ? "slds-has-error" : ""
