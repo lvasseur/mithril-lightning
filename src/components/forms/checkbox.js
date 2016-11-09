@@ -1,4 +1,18 @@
 
+
+const checkboxWrapper = {
+
+  view(vnode) {
+    let attrs = vnode.attrs || {};
+    return m(".slds-form-element",
+      attrs.legend ? m(".slds-form-element__legend.slds-form-element__label", attrs.legend) : null,
+      m(".slds-form-element__control", vnode.children)
+    )
+  }
+
+};
+
+
 const checkbox = {
 
   view(vnode) {
@@ -36,4 +50,4 @@ const checkboxToggle = {
 
 };
 
-export { checkbox, checkboxToggle }
+export { checkboxWrapper, checkbox, checkboxToggle }
