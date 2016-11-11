@@ -16,6 +16,7 @@ module.exports = {
     modal: PATHS.src + "/components/modal.js",
     icons: PATHS.src + "/components/icons.js",
     forms: PATHS.src + "/components/forms/forms.js",
+    lookups: PATHS.src + "/components/lookups/lookups.js",
   },
   output: {
     path: PATHS.dist,

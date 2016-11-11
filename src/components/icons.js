@@ -19,13 +19,18 @@ function iconSvg(type, icon, attrs) {
 
 export default {
 
-  standard(icon, size = "default", container = true) {
-    return m("span.slds-icon_container", {
+  standard(icon, size = "default", className = "", container = true) {
+    return container ? m("span.slds-icon_container", {
         className: "slds-icon-standard-" + icon.replace(/[_]+/g, "-")
       }, iconSvg("standard", icon, {
         className: iconSizes[size] ? iconSizes[size] : ""
       })
-    )
+    ) : iconSvg("standard", icon, {
+      className: [
+        iconSizes[size] ? iconSizes[size] : "",
+        "slds-icon-standard-" + icon.replace(/[_]+/g, "-")
+      ].join(" ")
+    })
   },
 
   utility(icon, size = "default", color = "default") {
