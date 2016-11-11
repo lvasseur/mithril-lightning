@@ -1,4 +1,4 @@
-var onKey = (function onKey() {
+const onKey = (function onKey() {
   var keymap = {
     'enter': 13,
     'space': 31,
@@ -26,4 +26,13 @@ var onKey = (function onKey() {
   };
 }());
 
-export {onKey}
+const highlighter = {
+  simple(text, key) {
+    let regex = new RegExp(key, "i");
+    let index = text.toLowerCase().indexOf(key.toLowerCase());
+    return m.trust(text.replace(regex, `<strong>${ text.slice(index, index + key.length) }</strong>`))
+  }
+};
+
+
+export { onKey, highlighter }
