@@ -1,22 +1,26 @@
+import prop from 'mithril/stream';
 import { onKey, highlighter } from "../../helpers.js";
+import icons from "../icons.js";
 
 export default {
 
   oninit(vnode) {
 
     this.lookupId = "lookup-" + vnode.attrs.input.name;
-    this.selected = m.prop(false);
+    this.selected = vnode.attrs.selected;
+    this.isOpen = prop(false);
+    this.searchTerm = vnode.attrs.searchTerm || prop("");
 
     this.isStatic = vnode.attrs.lookup.static == undefined ? true : vnode.attrs.lookup.static;
-    this.isOpen = m.prop(false);
-    this.searchTerm = m.prop("");
 
-    this.inputAttrs = vnode.attrs.input;
-    this.inputAttrs["id"] = this.lookupId;
-    this.inputAttrs["onclick"] = (e) => {
-      this.isOpen(true);
-    };
-    this.inputAttrs["oninput"] = m.withAttr("value",  this.searchTerm)
+    this.input = vnode.attrs.input;
+    Object.assign(this.input, {
+      id: this.lookupId,
+      onclick: (e) => {
+        this.isOpen(true);
+      },
+      oninput: m.withAttr("value",  this.searchTerm)
+    });
 
     this.onselect = vnode.attrs.onselect || false;
     this.onunselect = vnode.attrs.onunselect || false;
@@ -50,11 +54,11 @@ export default {
       className: this.isOpen() ? "slds-is-open" : "",
       onkeypress: onKey('esc', () => this.isOpen(false))
     }, [
-      m("label.slds-form-element__label", {"for": this.lookupId}, "Account Name"),
+      m("label.slds-form-element__label", {"for": this.lookupId}, vnode.attrs.label),
       m(".slds-form-element__control", [
         this.selected() ?
           this.selectedView(this.selected()) :
-          this.inputView(this.inputAttrs)
+          this.inputView(this.input)
       ]),
       m(".slds-lookup__menu", {
         id: this.lookupId
@@ -72,8 +76,10 @@ export default {
                 this.isOpen(false);
               }
             }, [
-              m("span.slds-lookup__item-action.slds-media.slds-media--center[id='lookup-option-359'][role='option']", [
-                icons.default.standard(lookup.icon, "small", "", false),
+              m("span.slds-lookup__item-action.slds-media.slds-media--center[role='option']", {
+                id: "lookup-option-" + item[lookup.itemKey]
+              }, [
+                icons.standard(lookup.icon, "small", "", false),
                 m(".slds-media__body", [
                   m(".slds-lookup__result-text", highlighter.simple(item.text, this.searchTerm())),
                   m("span.slds-lookup__result-meta.slds-text-body--small", highlighter.simple(item.meta, this.searchTerm()))
@@ -82,15 +88,7 @@ export default {
             ])
 
           }),
-
-          m("li[role='presentation']", [
-            m("span.slds-lookup__item-action.slds-lookup__item-action--label[id='lookup-option-365'][role='option']", [
-              m("svg.slds-icon.slds-icon--x-small.slds-icon-text-default[aria-hidden='true']", [
-                m("use[xlink:href='/assets/icons/utility-sprite/svg/symbols.svg#add']")
-              ]),
-              m("span.slds-truncate", vnode.attrs.action, vnode.attrs.action.title)
-            ])
-          ])
+          this.actionView(vnode.attrs.action)
         ])
       ])
     ])
@@ -117,7 +115,7 @@ export default {
         m("span.slds-pill__label[title='Salesforce.com, Inc.']", item.text),
         m("button.slds-button.slds-button--icon.slds-pill__remove[title='Remove']", {
           onclick: () => {
-            this.selected(false);
+            this.selected(null);
             this.onunselect ? this.onunselect() : null;
           }
         }, [
@@ -125,6 +123,36 @@ export default {
             m("use[xlink:href='/assets/icons/utility-sprite/svg/symbols.svg#close']")
           ])
         ])
+      ])
+    ])
+  },
+
+  itemView(item) {
+    return m("li[role='presentation']", {
+      key: lookup.itemKey ? item[lookup.itemKey] : null,
+      onclick: () => {
+        this.selected(item);
+        this.onselect ? vnode.attrs.onselect(item) : null;
+        this.isOpen(false);
+      }
+    }, [
+      m("span.slds-lookup__item-action.slds-media.slds-media--center[id='lookup-option-359'][role='option']", [
+        icons.standard(lookup.icon, "small", "", false),
+        m(".slds-media__body", [
+          m(".slds-lookup__result-text", highlighter.simple(item.text, this.searchTerm())),
+          m("span.slds-lookup__result-meta.slds-text-body--small", highlighter.simple(item.meta, this.searchTerm()))
+        ])
+      ])
+    ])
+  },
+
+  actionView(attrs) {
+    return m("li[role='presentation']", [
+      m("span.slds-lookup__item-action.slds-lookup__item-action--label[id='lookup-option-365'][role='option']", [
+        m("svg.slds-icon.slds-icon--x-small.slds-icon-text-default[aria-hidden='true']", [
+          m("use[xlink:href='/assets/icons/utility-sprite/svg/symbols.svg#add']")
+        ]),
+        m("span.slds-truncate", attrs, attrs.title)
       ])
     ])
   },

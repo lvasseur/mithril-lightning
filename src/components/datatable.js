@@ -38,12 +38,12 @@
  * @return {string|hyperscript}
  */
 
-
 /**
  * Datatable attributes.
  *
  * @param {datatableAttrs}
  */
+
 export default {
 
   errorMsg(e) {

@@ -23,7 +23,7 @@
   "homepage": "https://github.com/mfeitoza/mithril-lightning#readme",
   "dependencies": {
     "@salesforce-ux/design-system": "^2.1.3",
-    "mithril": "github:lhorie/mithril.js#rewrite"
+    "mithril": "^1.0.0-rc.3"
   },
   "devDependencies": {
     "babel-core": "*",

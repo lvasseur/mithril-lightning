@@ -2,7 +2,6 @@
  * Created by mfeitoza on 10/26/16.
  */
 
-
 const iconSizes = {
   "x-small": "slds-icon--x-small",
   "small": "slds-icon--small",
