@@ -9,11 +9,11 @@ const iconSizes = {
 };
 
 function iconSvg(type, icon, attrs) {
-  return m("svg.slds-icon", attrs, [
+  return m("svg.slds-icon", attrs,
     m("use", {
       "xlink:href": "/assets/icons/" + type + "-sprite/svg/symbols.svg#" + icon
     })
-  ])
+  )
 }
 
 export default {
@@ -38,6 +38,16 @@ export default {
           iconSizes[size] ? iconSizes[size] : "",
           "slds-icon-text-" + color
         ].join(" ")
+      })
+    )
+  },
+
+  button(icon, float = "") {
+    return m("svg.slds-button__icon", {
+      className: float ? "slds-button__icon--" + float : ""
+      },
+      m("use", {
+        "xlink:href": "/assets/icons/utility-sprite/svg/symbols.svg#" + icon
       })
     )
   },
